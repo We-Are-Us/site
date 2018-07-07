@@ -1,0 +1,18 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "allowJs": false,
+    "alwaysStrict": true,
+    "strictNullChecks": false,
+    "noEmit": true,
+    "noImplicitAny": false,
+    "typeRoots": [
+      "../node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "../server/**/*.ts",
+    "../build/*",
+    "**/*.d.ts"
+  ]
+}

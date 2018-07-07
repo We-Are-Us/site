@@ -1,0 +1,17 @@
+# npm modules
+node_modules
+
+# log files
+*.log
+
+# .env file
+.env
+
+# Parcel cache
+.cache
+
+# Generated JavaScript
+client/**/*.js
+client/**/*.js.map
+server/**/*.js
+server/**/*.js.map

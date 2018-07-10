@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>We Are Us</title>
   {{> gtm}}
+  <link rel="stylesheet" href="/public/screen.css"/>
 </head>
 <body>
   {{> gtm-iframe}}
   {{{ content }}}
+  {{#if jsBundle}}
+    <script src="{{jsBundle}}"></script>
+  {{/if}}
 </body>
 </html>

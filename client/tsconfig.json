@@ -6,10 +6,13 @@
     "strictNullChecks": false,
     "noEmit": true,
     "noImplicitAny": false,
-    "typeRoots": [
-      "../node_modules/@types"
-    ]
+    "jsx": "react",
+    "target": "es2017"
   },
+  "include": [
+    "../client/**/*.ts",
+    "../client/**/*.tsx"
+  ],
   "exclude": [
     "../server/**/*.ts",
     "../build/*",

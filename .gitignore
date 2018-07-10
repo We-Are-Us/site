@@ -15,3 +15,6 @@ client/**/*.js
 client/**/*.js.map
 server/**/*.js
 server/**/*.js.map
+
+# Generated output
+!public/.eslintrc

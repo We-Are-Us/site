@@ -8,5 +8,9 @@ script:
  - npm audit
  - npm run compile
 
+before_deploy:
+ - rm -rf node_modules
+ - npm install --production
 deploy:
   provider: azure_web_apps
+  on: master

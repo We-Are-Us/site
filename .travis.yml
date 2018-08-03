@@ -12,6 +12,7 @@ before_deploy:
  - rm -rf node_modules
  - npm install --production
  - curl -L https://aka.ms/InstallAzureCli | bash
+ - az --help
 deploy:
   provider: azure_web_apps
   on: master

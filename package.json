@@ -40,7 +40,6 @@
     "contentful": "6.1.1",
     "eslint": "4.19.1",
     "eslint-plugin-compat": "2.4.0",
-    "inert": "5.1.0",
     "parcel-bundler": "1.9.4",
     "react": "16.4.1",
     "react-dom": "16.4.1",
@@ -55,6 +54,7 @@
     "handlebars": "4.0.11",
     "hapi": "17.5.2",
     "if-env": "1.0.4",
+    "inert": "5.1.0",
     "vision": "5.3.3",
     "winston": "3.0.0"
   }

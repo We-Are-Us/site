@@ -8,11 +8,22 @@ script:
  - npm audit
  - npm run compile
 
-before_deploy:
+after_success:
  - rm -rf node_modules
  - npm install --production
- - curl -L https://aka.ms/InstallAzureCli | bash
- - az --help
-deploy:
-  provider: azure_web_apps
-  on: master
+ - mkdir deploy
+ - cp -R client deploy
+ - cp -R public deploy
+ - cp -R node_modules deploy
+ - cp -R server deploy
+ - cp .env.example deploy
+ - cp .npmrc deploy
+ - cp package.json deploy
+ - cp server.js deploy
+ - cp web.config deploy
+ - zip -r deploy.zip deploy
+ - curl --ftp-create-dirs
+       -T deploy.zip
+       sftp://${SFTP_USER}:${SFTP_PASSWORD}@waws-prod-dm1-095.ftp.azurewebsites.windows.net/site/wwwroot
+
+

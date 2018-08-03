@@ -17,5 +17,8 @@ server/**/*.js
 server/**/*.js.map
 
 # Generated output
+dist/
+deploy/
 public/
 !public/.eslintrc
+deploy.zip

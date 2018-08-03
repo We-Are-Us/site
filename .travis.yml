@@ -22,8 +22,6 @@ after_success:
  - cp server.js deploy
  - cp web.config deploy
  - zip -r deploy.zip deploy
- - curl --ftp-create-dirs
-       -T deploy.zip
-       sftp://${SFTP_USER}:${SFTP_PASSWORD}@waws-prod-dm1-095.ftp.azurewebsites.windows.net/site/wwwroot
+ - curl -T deploy.zip -u ${SFTP_USER}:${SFTP_PASSWORD} sftp://waws-prod-dm1-095.ftp.azurewebsites.windows.net/site/wwwroot
 
 

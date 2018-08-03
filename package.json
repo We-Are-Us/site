@@ -18,6 +18,8 @@
     "compile:client": "parcel build -d public -o app.js ./client/index.tsx && sass ./client/style/screen.scss ./public/screen.css",
     "postcompile:client": "eslint --no-ignore --config public/.eslintrc public/app.js",
     "compile:server": "tsc -p server",
+    "lint": "npm run lint:client",
+    "lint:client": "tslint -c ./client/tslint.json -p ./client/tsconfig.json",
     "start": "env-cmd .env --no-override if-env NODE_ENV=development && npm run start:dev || npm run start:prod",
     "prestart:dev": "npm run compile:server",
     "start:dev": "concurrently --kill-others \"node server.js\" \"parcel --no-cache -d public -o app.js ./client/index.tsx --log-level 3\"",
@@ -42,6 +44,8 @@
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "sass": "1.9.0",
+    "tslint": "5.11.0",
+    "tslint-react": "3.6.0",
     "typescript": "3.0.1"
   },
   "dependencies": {

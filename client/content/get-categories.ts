@@ -5,12 +5,10 @@ interface Category {
   image: contentful.Asset;
 }
 
-const getCategories = async (client: contentful.ContentfulClientApi) => {
+const getCategories = async (client: contentful.ContentfulClientApi): Promise<Array<Category>> => {
   const entries: contentful.EntryCollection<Category> = await client.getEntries<Category>({
-    'content_type': 'category'
+    content_type: 'category'
   });
-
-  console.log('entries', entries);
 
   return entries.items.map(entry => ({
     name: entry.fields.name,

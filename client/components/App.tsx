@@ -24,8 +24,9 @@ class App extends React.Component<{}, ComponentState> {
 
     this.state = {
       category: 'yoga',
+      // tslint:disable-next-line
       backgroundImage: 'url(https://images.ctfassets.net/xu4zh386cjva/6ghGkkKUW44yCmmuKUIykC/3c2cb9889ae24c99662974a02b63a5b8/1834827.png)'
-    }
+    };
   }
 
   async componentDidMount() {
@@ -34,8 +35,6 @@ class App extends React.Component<{}, ComponentState> {
 
     if (numCategories > 0) {
       const index = Math.floor(Math.random() * Math.floor(numCategories));
-
-      console.log('index', index);
 
       const category = categories[index];
       const backgroundImage = `url("${category.image}")`;

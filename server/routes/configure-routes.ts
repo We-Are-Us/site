@@ -29,6 +29,7 @@ const configureRoutes = (server: Server) => {
     method: 'GET',
     path: '/',
     handler: (request, h) => h.view('index', {
+      appInsightsKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
       gtmContainerId: process.env.GTM_CONTAINER_ID,
       jsBundle: process.env.NODE_ENV !== 'development' ? '/public/app.js' : 'http://localhost:1234/app.js'
     })

@@ -23,4 +23,4 @@ after_success:
  - cd deploy
  - zip -r9 ../deploy.zip .
  - cd ..
- - curl -T deploy.zip -u ${SFTP_USER}:${SFTP_PASSWORD} ftp://waws-prod-dm1-095.ftp.azurewebsites.windows.net/site/wwwroot/ --ftp-pasv --verbose
+ - curl -X POST -u ${KUDU_USERNAME}:${KUDU_PASSWORD} --data-binary @deploy.zip https://${KUDU_SITENAME}.scm.azurewebsites.net/api/zipdeploy

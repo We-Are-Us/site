@@ -1,8 +1,5 @@
 language: node_js
 
-env:
-  - AZURE_WA_SITE=weareus-website
-
 script:
  - npm run lint
  - npm audit

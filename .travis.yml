@@ -15,6 +15,7 @@ after_success:
  - cp deploy.sh deploy
  - cp package-lock.json deploy
  - cp package.json deploy
+ - cp README.md deploy
  - cp server.js deploy
  - cp web.config deploy
  - cd deploy

@@ -22,4 +22,5 @@ after_success:
  - cd deploy
  - zip -r9 ../deploy.zip .
  - cd ..
+ - unzip -lf deploy.zip
  - curl -X POST -u ${KUDU_USERNAME}:${KUDU_PASSWORD} --data-binary @deploy.zip https://${KUDU_SITENAME}.scm.azurewebsites.net/api/zipdeploy

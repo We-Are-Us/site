@@ -9,8 +9,10 @@ after_success:
  - mkdir deploy
  - cp -r public deploy/public
  - cp -r server deploy/server
+ - cp .deployment deploy
  - cp .env.example deploy
  - cp .npmrc deploy
+ - cp deploy.sh deploy
  - cp package.json deploy
  - cp server.js deploy
  - cp web.config deploy

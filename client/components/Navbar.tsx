@@ -2,7 +2,9 @@ import * as React from 'react';
 
 const Navbar: React.SFC<{}> = () => (
   <nav className="navbar navbar-expand-md navbar-light text-white">
-    <a className="navbar-brand text-white" href="#">We Are Us</a>
+    <a className="navbar-brand text-white" href="/">
+      <img src="/public/assets/Logo_White.svg" itemProp="logo" width="200" />
+    </a>
     <button
       className="navbar-toggler"
       type="button"
@@ -16,7 +18,7 @@ const Navbar: React.SFC<{}> = () => (
     </button>
 
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav ml-auto pt-1">
         <li className="nav-item active pr-2">
           <a className="nav-link text-white" href="#">Find a Pracitioner <span className="sr-only">(current)</span></a>
         </li>

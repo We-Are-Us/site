@@ -17,7 +17,7 @@ const configureRoutes = (server: Server) => {
     method: 'GET',
     path: '/',
     handler: async (request, h) => h.view('index', {
-      jsBundle: process.env.NODE_ENV !== 'development' ? '/app.js' : 'http://localhost:1234/app.js'
+      jsBundle: process.env.NODE_ENV !== 'development' ? '/public/app.js' : 'http://localhost:1234/app.js'
     })
   });
 };

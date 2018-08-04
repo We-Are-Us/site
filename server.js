@@ -3,7 +3,7 @@ require('dotenv-safe').load({
     allowEmptyValues: true
   });
 } catch (e) {
-  console.log('error', e);XX
+  console.warn('Exception thrown when loading dotenv-safe');
 }
 
   require('./server/monitoring/index');

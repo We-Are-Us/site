@@ -3,6 +3,7 @@ language: node_js
 script:
  - npm run lint
  - npm audit
+ - printf '%s\n' 'CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID}' 'CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN}' >.env
  - npm run compile
 
 after_success:

@@ -10,7 +10,6 @@ after_success:
  - mkdir deploy
  - cp -R public deploy/public
  - cp -R server deploy/server
- - cp .deployment deploy
  - cp .env.example deploy
  - cp .npmrc deploy
  - cp deploy.cmd deploy

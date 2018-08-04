@@ -3,15 +3,24 @@ import {Entry} from 'contentful';
 import contentfulClient from '../content/client';
 import getCategories from '../content/get-categories';
 
+const EXPIRES_IN_SECONDS = 7200;
+
 const configureRoutes = (server: Server) => {
   server.route({
     method: 'GET',
     path: '/public/{param*}',
+    options: {
+      cache: {
+        expiresIn: EXPIRES_IN_SECONDS,
+        privacy: 'public'
+      }
+    },
     handler: {
       directory: {
         path: './public',
         redirectToSlash: true,
         index: true,
+        etagMethod: 'simple'
       }
     }
   });

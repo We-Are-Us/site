@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Navbar from './Navbar';
-import contentfulClient from '../content/client';
 import getCategories from '../content/get-categories';
 import PopularCategories from './PopularCategories';
 import FeaturedPracticioners from './FeaturedPracticioners';
@@ -30,7 +29,7 @@ class App extends React.Component<{}, ComponentState> {
   }
 
   async componentDidMount() {
-    const categories = await getCategories(contentfulClient);
+    const categories = await getCategories();
     const numCategories = categories.length;
 
     if (numCategories > 0) {

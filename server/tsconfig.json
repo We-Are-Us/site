@@ -1,32 +1,32 @@
 {
-    "compileOnSave": true,
-    "compilerOptions": {
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "strict": true,
-      "removeComments": false,
-      "sourceMap": true,
-      "forceConsistentCasingInFileNames": true,
-      "target": "es2017",
-      "jsx": "react",
-      "locale": "en-nz",
-      "newLine": "LF",
-      "lib": [
-        "dom",
-        "es2017",
-        "scripthost"
-      ],
-      "typeRoots": [
-        "../node_modules/@types"
-      ]
-    },
-    "include": [
-      "./**/*.ts"
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": false,
+    "removeComments": false,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "target": "es2017",
+    "jsx": "react",
+    "locale": "en-nz",
+    "newLine": "LF",
+    "lib": [
+      "dom",
+      "es2017",
+      "scripthost"
     ],
-    "exclude": [
-      "../client/**/*.ts",
-      "../client/**/*.tsx",
-      "../build/*",
-      "**/*.d.ts"
+    "typeRoots": [
+      "../node_modules/@types"
     ]
-  }
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "../client/**/*.ts",
+    "../client/**/*.tsx",
+    "../build/*",
+    "**/*.d.ts"
+  ]
+}

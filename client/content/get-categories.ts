@@ -6,12 +6,10 @@ interface Category {
 }
 
 const getCategories = async (): Promise<Array<Category>> => {
-  const entries: contentful.EntryCollection<Category> = await fetch('/api/content/entries');
+  const response: contentful.EntryCollection<Category> = await fetch('/api/content/entries');
+  const entries = await response.json();
 
-  return entries.items.map(entry => ({
-    name: entry.fields.name,
-    image: entry.fields.image.fields.file.url
-  }));
+  return entries;
 };
 
 export default getCategories;

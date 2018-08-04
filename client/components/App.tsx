@@ -22,9 +22,9 @@ class App extends React.Component<{}, ComponentState> {
     super(props);
 
     this.state = {
-      category: 'yoga',
+      category: 'homeopathy',
       // tslint:disable-next-line
-      backgroundImage: 'url(https://images.ctfassets.net/xu4zh386cjva/6ghGkkKUW44yCmmuKUIykC/3c2cb9889ae24c99662974a02b63a5b8/1834827.png)'
+      backgroundImage: 'url(https://images.ctfassets.net/xu4zh386cjva/18PdxBV4K62USMKKUU4EcW/950b298c66a5fb754b8fed10b7c63dae/Screen_Shot_2018-05-16_at_1.16.10_PM.png)'
     };
   }
 

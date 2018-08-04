@@ -13,6 +13,7 @@ after_success:
  - cp .env.example deploy
  - cp .npmrc deploy
  - cp deploy.sh deploy
+ - cp package-lock.json deploy
  - cp package.json deploy
  - cp server.js deploy
  - cp web.config deploy

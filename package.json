@@ -6,7 +6,7 @@
   "private": true,
   "engines": {
     "node": "^10.6.0",
-    "npm": "^5.6.0"
+    "npm": "^6.1.0"
   },
   "browserslist": [
     "last 1 version",

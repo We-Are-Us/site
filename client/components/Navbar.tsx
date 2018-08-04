@@ -20,7 +20,7 @@ const Navbar: React.SFC<{}> = () => (
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav ml-auto pt-1">
         <li className="nav-item active pr-2">
-          <a className="nav-link text-white" href="#">Find a Pracitioner <span className="sr-only">(current)</span></a>
+          <a className="nav-link text-white" href="#">Find a Practicioner <span className="sr-only">(current)</span></a>
         </li>
         <li className="nav-item px-2">
           <a className="nav-link text-white" href="#">Register as a Practicioner</a>

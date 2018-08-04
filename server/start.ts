@@ -4,9 +4,10 @@ import * as Inert from 'inert';
 import logger from './logging/logger';
 import configureRoutes from './routes/configure-routes';
 
+const DEFAULT_PORT = 8080;
+
 const server = new Server({
-  host: 'localhost',
-  port: 8080
+  port: process.env.PORT || DEFAULT_PORT
 });
 
 const start = async () => {

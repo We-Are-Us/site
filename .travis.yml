@@ -9,11 +9,8 @@ script:
  - npm run compile
 
 after_success:
- - rm -rf node_modules
- - npm install --production
  - mkdir deploy
  - cp -r public deploy/public
- - cp -r node_modules deploy/node_modules
  - cp -r server deploy/server
  - cp .env.example deploy
  - cp .npmrc deploy

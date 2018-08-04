@@ -1,1 +1,1 @@
-npm config set strict-ssl false && npm install
+npm install --production

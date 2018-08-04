@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "compile": "npm run compile:client && npm run compile:server",
-    "compile:client": "parcel build -d public -o app.js ./client/index.tsx && sass ./client/style/screen.scss ./public/screen.css",
+    "compile:client": "env-cmd .env --no-override parcel build -d public -o app.js ./client/index.tsx && sass ./client/style/screen.scss ./public/screen.css",
     "postcompile:client": "eslint --no-ignore --config public/.eslintrc public/app.js",
     "compile:server": "tsc -p server",
     "lint": "npm run lint:client",

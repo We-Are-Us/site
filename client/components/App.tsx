@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import getCategories from '../content/get-categories';
 import PopularCategories from './PopularCategories';
 import FeaturedPracticioners from './FeaturedPracticioners';
+import Category from '../domain/Category';
 
 // TODO: this would come from contentful - matching modality to image
 const style = {
@@ -13,6 +14,7 @@ const style = {
 };
 
 interface ComponentState {
+  categories: Array<Category>;
   category: string;
   backgroundImage: string;
 }
@@ -22,9 +24,10 @@ class App extends React.Component<{}, ComponentState> {
     super(props);
 
     this.state = {
-      category: 'homeopathy',
+      categories: [],
+      category: '',
       // tslint:disable-next-line
-      backgroundImage: 'url(https://images.ctfassets.net/xu4zh386cjva/18PdxBV4K62USMKKUU4EcW/950b298c66a5fb754b8fed10b7c63dae/Screen_Shot_2018-05-16_at_1.16.10_PM.png)'
+      backgroundImage: '' // 'url(https://images.ctfassets.net/xu4zh386cjva/18PdxBV4K62USMKKUU4EcW/950b298c66a5fb754b8fed10b7c63dae/Screen_Shot_2018-05-16_at_1.16.10_PM.png)'
     };
   }
 
@@ -39,6 +42,7 @@ class App extends React.Component<{}, ComponentState> {
       const backgroundImage = `url("${category.image}")`;
 
       this.setState({
+        categories,
         category: category.name,
         backgroundImage
       });
@@ -46,7 +50,7 @@ class App extends React.Component<{}, ComponentState> {
   }
 
   render() {
-    const {backgroundImage, category} = this.state;
+    const {backgroundImage, categories, category} = this.state;
 
     const inlineStyle = Object.assign({}, style, {
       backgroundImage
@@ -85,7 +89,7 @@ class App extends React.Component<{}, ComponentState> {
             </div>
           </div>
         </div>
-        <PopularCategories />
+        <PopularCategories categories={categories} />
         <FeaturedPracticioners />
       </React.Fragment>
     );

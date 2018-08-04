@@ -1,6 +1,11 @@
 import * as React from 'react';
+import Category from '../domain/Category';
 
-const PopularCategories: React.SFC<{}> = () => (
+interface Props {
+  categories: Array<Category>;
+}
+
+const PopularCategories: React.SFC<Props> = ({categories}: Props) => (
   <div className="container mt-4">
     <div className="row">
       <div className="col-12">
@@ -8,10 +13,10 @@ const PopularCategories: React.SFC<{}> = () => (
       </div>
     </div>
     <div className="row">
-      {['Yoga', 'Naturopathy', 'Homeopathy', 'Acupuncture'].map(modality => (
-        <div key={modality.toLowerCase()} className="col-12 col-sm-6 col-md-3 py-2">
-          <a href="/category/{modality.toLowerCase()}" className="btn btn-secondary btn-block">
-            {modality}
+      {categories.map(modality => (
+        <div key={modality.name.toLowerCase()} className="col-12 col-sm-6 col-md-3 py-2">
+          <a href="/category/{modality.name.toLowerCase()}" className="btn btn-secondary btn-block">
+            {modality.name}
           </a>
         </div>
       ))}

@@ -8,8 +8,8 @@ script:
 
 after_success:
  - mkdir deploy
- - cp -r public deploy/public
- - cp -r server deploy/server
+ - cp -r public deploy
+ - cp -r server deploy
  - cp .deployment deploy
  - cp .env.example deploy
  - cp .npmrc deploy

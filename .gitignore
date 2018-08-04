@@ -19,7 +19,9 @@ server/**/*.js.map
 # Generated output
 dist/
 deploy/
-public/
-!public/.eslintrc
+public/app.js
+public/app.map
+public/screen.css
+public/sceeen.css.map
 deploy.zip
 report.html

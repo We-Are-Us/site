@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="15px" viewBox="0 0 27 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Scroll_Arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Scroll_Arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(13.500000, 7.500000) rotate(-270.000000) translate(-13.500000, -7.500000) translate(6.000000, -6.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M2.2,0.909473684 C1.77784321,0.518174251 1.11998611,0.529720281 0.711968859,0.935590074 C0.303951606,1.34145987 0.292344485,1.99585456 0.685714286,2.41578947 L12.1142857,13.7842105 L0.685714286,24.7547368 C0.292344485,25.1746718 0.303951606,25.8290664 0.711968859,26.2349362 C1.11998611,26.6408061 1.77784321,26.6523521 2.2,26.2610526 L14.9428571,13.7842105 L2.2,0.909473684 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

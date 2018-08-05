@@ -7,13 +7,14 @@ interface ComponentProps {
 
 const Navbar: React.SFC<ComponentProps> = ({white}: ComponentProps) => {
   const textClassName = white ? 'text-white' : 'text-dark';
-  const imgSrc = white ? '/public/assets/Logo_White.svg' : '/public/assets/Logo_Footer.svg';
+  const btnClassName = white ? 'btn-outline-light' : 'btn-outline-dark';
+  const imgSrc = white ? '/public/assets/Logo_White.svg' : '/public/assets/Logo Footer.svg';
 
   return (
     <div className={classNames('position-absolute', 'w-100', textClassName)}>
       <nav className="navbar navbar-expand-md navbar-light ">
         <a className={classNames('navbar-brand', textClassName)} href="/">
-          <img src="/public/assets/Logo_White.svg" itemProp="logo" width="200" />
+          <img src={imgSrc} itemProp="logo" height="32" />
         </a>
         <button
           className="navbar-toggler"
@@ -44,13 +45,13 @@ const Navbar: React.SFC<ComponentProps> = ({white}: ComponentProps) => {
               <a className={classNames('nav-link', textClassName)} href="#">Sign up</a>
             </li>
             <li className="nav-item pl-2">
-              <a className="btn btn-outline-light" href="#">Login</a>
+              <a className={classNames('btn', btnClassName)} href="#">Login</a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
-  )
+  );
 };
 
 export default Navbar;

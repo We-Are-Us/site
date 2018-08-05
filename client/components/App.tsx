@@ -17,12 +17,12 @@ class App extends React.Component<Props, {}> {
 
   render() {
     const {history} = this.props;
-    const className = history.location === '' ? 'text-white' : 'text-dark';
+    const white = history.location.pathname === '/';
 
     return (
       <React.Fragment>
         <div className="my-0 position-relative">
-          <Navbar className={className} />
+          <Navbar white={white} />
         </div>
         <Router history={history}>
           <Switch>

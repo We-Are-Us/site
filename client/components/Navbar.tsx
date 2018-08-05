@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const Navbar: React.SFC<{}> = () => (
-  <nav className="navbar navbar-expand-md navbar-light text-white">
+  <nav className="navbar navbar-expand-md navbar-light bg-dark text-white">
     <a className="navbar-brand text-white" href="/">
       <img src="/public/assets/Logo_White.svg" itemProp="logo" width="200" />
     </a>
@@ -33,7 +33,7 @@ const Navbar: React.SFC<{}> = () => (
         </li>
       </ul>
     </div>
-  </nav>
+  </nav >
 );
 
 export default Navbar;

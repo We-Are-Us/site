@@ -3,6 +3,7 @@ import getCategories from '../content/get-categories';
 import PopularCategories from './PopularCategories';
 import FeaturedPracticioners from './FeaturedPracticioners';
 import Category from '../domain/Category';
+import {CLIENT_RENEG_WINDOW} from 'tls';
 
 // TODO: this would come from contentful - matching modality to image
 const style = {
@@ -38,7 +39,7 @@ class Homepage extends React.Component<{}, ComponentState> {
       const index = Math.floor(Math.random() * Math.floor(numCategories));
 
       const category = categories[index];
-      const backgroundImage = `url("${category.image}")`;
+      const backgroundImage = `url("${category.image}?w=${window.innerWidth}")`;
 
       this.setState({
         categories,

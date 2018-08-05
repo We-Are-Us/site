@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 
 const FeaturedPracticioners: React.SFC<{}> = () => (
   <div className="container mt-4">
@@ -9,7 +10,7 @@ const FeaturedPracticioners: React.SFC<{}> = () => (
     </div>
     <div className="row">
       <div className="col-12">
-        cards go here
+        <Link to="/practicioner">example</Link>
       </div>
     </div>
   </div>

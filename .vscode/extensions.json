@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "kevinmcgowan.TypeScriptImport",
+    "ms-vscode.vscode-node-azure-pack"
+  ]
+}

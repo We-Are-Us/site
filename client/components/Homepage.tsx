@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MarkdownRenderer from 'react-markdown-renderer'
+import MarkdownRenderer from 'react-markdown-renderer';
 import PopularCategories from './PopularCategories';
 import FeaturedPracticioners from './FeaturedPracticioners';
 import Category from '../domain/Category';
@@ -20,10 +20,7 @@ interface ComponentProps {
   categories: Array<Category>;
 }
 
-interface ComponentState {
-}
-
-class Homepage extends React.Component<ComponentProps, ComponentState> {
+class Homepage extends React.Component<ComponentProps, {}> {
   constructor(props: ComponentProps) {
     super(props);
   }

@@ -18,7 +18,6 @@ const categories = (window.__INITIAL_STATE__ as InitialState).categories || [];
 const lead = (window.__INITIAL_STATE__ as InitialState).lead || '';
 const modality = (window.__INITIAL_STATE__ as InitialState).modality || {name: ''};
 
-
 interface Props {
   history: any;
 }
@@ -41,14 +40,18 @@ class App extends React.Component<Props, {}> {
         </div>
         <Router history={history}>
           <Switch>
-            <Route exact path="/" render={() => (
-              <Homepage
-                benefits={benefits}
-                categories={categories}
-                lead={lead}
-                modality={modality.name}
-              />
-            )} />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Homepage
+                  benefits={benefits}
+                  categories={categories}
+                  lead={lead}
+                  modality={modality.name}
+                />
+              )}
+            />
             <Route exact path="/practicioner" component={Practicioner} />
           </Switch>
         </Router>

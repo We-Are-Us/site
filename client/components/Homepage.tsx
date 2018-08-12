@@ -3,7 +3,13 @@ import getCategories from '../content/get-categories';
 import PopularCategories from './PopularCategories';
 import FeaturedPracticioners from './FeaturedPracticioners';
 import Category from '../domain/Category';
-import {CLIENT_RENEG_WINDOW} from 'tls';
+
+interface InitialState {
+  modality?: {
+    name: string;
+    image: string;
+  }
+}
 
 // TODO: this would come from contentful - matching modality to image
 const style = {
@@ -27,15 +33,29 @@ class Homepage extends React.Component<{}, ComponentState> {
       categories: [],
       category: '',
       // tslint:disable-next-line
-      backgroundImage: '' // 'url(https://images.ctfassets.net/xu4zh386cjva/18PdxBV4K62USMKKUU4EcW/950b298c66a5fb754b8fed10b7c63dae/Screen_Shot_2018-05-16_at_1.16.10_PM.png)'
+      backgroundImage: 'url(https://images.ctfassets.net/xu4zh386cjva/18PdxBV4K62USMKKUU4EcW/950b298c66a5fb754b8fed10b7c63dae/Screen_Shot_2018-05-16_at_1.16.10_PM.png)'
     };
   }
 
   async componentDidMount() {
+    const modality = (window.__INITIAL_STATE__ as InitialState).modality || {};
+
+    if (modality.name && modality.image) {
+      this.setState({
+        category: modality.name,
+        backgroundImage: `url(${modality.image})`;
+      });
+    }
+
     const categories = await getCategories();
+
+    this.setState({
+      categories
+    }
+
     const numCategories = categories.length;
 
-    if (numCategories > 0) {
+    if (numCategories > 0 && (this.state.category == null || this.state.backgroundImage == null)) {
       const index = Math.floor(Math.random() * Math.floor(numCategories));
 
       const category = categories[index];

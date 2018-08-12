@@ -18,7 +18,7 @@ const FeaturedPracticioners: React.SFC<{}> = () => (
       {images.map(image => (
         <div key={image} className="col-12 col-md-6 col-lg-4">
           <div className="card border-0 rounded-0 p-4">
-            <img src={image} className="card-img-top" />
+            <Link to="practicioner"><img src={image} className="card-img-top" /></Link>
             <div className="card-body px-0 pt-1">
               <div className="text-muted">
                 <span className="pr-3">Yoga</span>

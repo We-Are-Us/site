@@ -23,16 +23,35 @@ interface Props {
   history: any;
 }
 
-class App extends React.Component<Props, {}> {
+interface State {
+  white: boolean;
+}
+
+class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      white: true
+    };
+  }
+
+  componentDidMount() {
+    const {history} = this.props;
+    const white = window.location.pathname === '/';
+
+    history.listen(((location, action) => {
+      const white = location.pathname === '/';
+
+      this.setState({white});
+    }));
+
+    this.setState({white});
   }
 
   render() {
     const {history} = this.props;
-    const white = history.location.pathname === '/';
+    const {white} = this.state;
 
     return (
       <React.Fragment>

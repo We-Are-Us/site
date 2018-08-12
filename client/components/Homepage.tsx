@@ -1,7 +1,9 @@
 import * as React from 'react';
+import MarkdownRenderer from 'react-markdown-renderer'
 import PopularCategories from './PopularCategories';
 import FeaturedPracticioners from './FeaturedPracticioners';
 import Category from '../domain/Category';
+import TitledText from '../domain/TitledText';
 
 // TODO: this would come from contentful - matching modality to image
 const style = {
@@ -12,6 +14,7 @@ const style = {
 };
 
 interface ComponentProps {
+  benefits: Array<TitledText>;
   lead: string;
   modality: string;
   categories: Array<Category>;
@@ -26,7 +29,7 @@ class Homepage extends React.Component<ComponentProps, ComponentState> {
   }
 
   render() {
-    const {categories, lead, modality} = this.props;
+    const {benefits, categories, lead, modality} = this.props;
     const image = categories.find(c => c.name === modality).image;
     const backgroundImage = `url(${image})`;
 
@@ -63,9 +66,25 @@ class Homepage extends React.Component<ComponentProps, ComponentState> {
             </div>
           </div>
         </div>
-        <div className="py-5 lead container text-center">
-          {lead}
+        <div className="pt-5 pb-3 lead container text-center">
+          <MarkdownRenderer markdown={lead} />
         </div>
+        <hr />
+        <div className="container">
+          <div className="row">
+            {benefits.map(benefit => (
+              <div key={benefit.title} className="col-12 col-md-6">
+                <div className="card border-0">
+                  <div className="card-body">
+                    <h3 className="card-title">{benefit.title}</h3>
+                    <p className="card-text">{benefit.text}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <PopularCategories categories={categories} />
         <FeaturedPracticioners />
       </React.Fragment>

@@ -81,9 +81,10 @@ class Homepage extends React.Component<ComponentProps, {}> {
             ))}
           </div>
         </div>
-
+        {/*
         <PopularCategories categories={categories} />
         <FeaturedPracticioners />
+        */}
       </React.Fragment>
     );
 

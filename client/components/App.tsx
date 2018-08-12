@@ -5,6 +5,7 @@ import Homepage from './Homepage';
 import Practicioner from './Practicioner';
 import Category from '../domain/Category';
 import TitledText from '../domain/TitledText';
+import Footer from './Footer';
 
 interface InitialState {
   benefits?: Array<TitledText>
@@ -55,6 +56,7 @@ class App extends React.Component<Props, {}> {
             <Route exact path="/practicioner" component={Practicioner} />
           </Switch>
         </Router>
+        <Footer />
       </React.Fragment>
     );
   }

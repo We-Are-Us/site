@@ -1,6 +1,5 @@
 import * as React from 'react';
 import MarkdownRenderer from 'react-markdown-renderer';
-import PopularCategories from './PopularCategories';
 import FeaturedPracticioners from './FeaturedPracticioners';
 import Category from '../domain/Category';
 import TitledText from '../domain/TitledText';

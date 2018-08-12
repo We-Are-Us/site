@@ -6,6 +6,7 @@ const Practicioner: React.SFC<{}> = () => (
       <div className="pt-5" />
       <img
         className="img-fluid w-100 mt-3 border-top-1"
+        {/* tslint:disable-next-line */}
         src="https://images.ctfassets.net/xu4zh386cjva/2yqY5dMqvWAMCkYisSacKs/5b3bb62383444cb60caf16ec4812f6d3/placeholder_3.png"
       />
     </div>
@@ -30,13 +31,12 @@ const Practicioner: React.SFC<{}> = () => (
           </div>
           <h3 className="h3 mt-3">About Rachel Barclay</h3>
           <p>
-            Lorem ipsum dolor sit amet, ea cum maluisset splendide, ut autem atqui blandit est, cu omnis soluta dissentiet his.
+            Lorem ipsum dolor sit amet, ea cum maluisset splendide, ut autem
+            atqui blandit est, cu omnis soluta dissentiet his.
           </p>
           <a href="#" className="text-primary font-weight-bold">Read More</a>
         </div>
-        <div className="col-4">
-
-        </div>
+        <div className="col-4" />
       </div>
     </div>
   </React.Fragment>

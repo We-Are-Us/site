@@ -40,10 +40,10 @@ class App extends React.Component<Props, State> {
     const {history} = this.props;
     const white = window.location.pathname === '/';
 
-    history.listen(((location, action) => {
-      const white = location.pathname === '/';
+    history.listen((location => {
+      const isWhite = location.pathname === '/';
 
-      this.setState({white});
+      this.setState({white: isWhite});
     }));
 
     this.setState({white});

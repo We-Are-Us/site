@@ -1,13 +1,15 @@
 import * as React from 'react';
 
+// tslint:disable-next-line
+const imgSrc = "https://images.ctfassets.net/xu4zh386cjva/2yqY5dMqvWAMCkYisSacKs/5b3bb62383444cb60caf16ec4812f6d3/placeholder_3.png"
+
 const Practicioner: React.SFC<{}> = () => (
   <React.Fragment>
     <div className="container-fluid px-0">
       <div className="pt-5" />
       <img
         className="img-fluid w-100 mt-3 border-top-1"
-        {/* tslint:disable-next-line */}
-        src="https://images.ctfassets.net/xu4zh386cjva/2yqY5dMqvWAMCkYisSacKs/5b3bb62383444cb60caf16ec4812f6d3/placeholder_3.png"
+        src={imgSrc}
       />
     </div>
     <div className="container">

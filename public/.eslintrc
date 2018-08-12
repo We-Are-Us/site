@@ -17,7 +17,8 @@
     "polyfills": [
       "fetch",
       "intersectionobserver",
-      "promises"
+      "promises",
+      "Array.prototype.find"
     ]
   }
 }

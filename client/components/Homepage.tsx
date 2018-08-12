@@ -1,15 +1,7 @@
 import * as React from 'react';
-import getCategories from '../content/get-categories';
 import PopularCategories from './PopularCategories';
 import FeaturedPracticioners from './FeaturedPracticioners';
 import Category from '../domain/Category';
-
-interface InitialState {
-  modality?: {
-    name: string;
-    image: string;
-  }
-}
 
 // TODO: this would come from contentful - matching modality to image
 const style = {
@@ -19,58 +11,24 @@ const style = {
   backgroundRepeat: 'no-repeat'
 };
 
-interface ComponentState {
+interface ComponentProps {
+  lead: string;
+  modality: string;
   categories: Array<Category>;
-  category: string;
-  backgroundImage: string;
 }
 
-class Homepage extends React.Component<{}, ComponentState> {
-  constructor(props: {}) {
+interface ComponentState {
+}
+
+class Homepage extends React.Component<ComponentProps, ComponentState> {
+  constructor(props: ComponentProps) {
     super(props);
-
-    this.state = {
-      categories: [],
-      category: '',
-      // tslint:disable-next-line
-      backgroundImage: 'url(https://images.ctfassets.net/xu4zh386cjva/18PdxBV4K62USMKKUU4EcW/950b298c66a5fb754b8fed10b7c63dae/Screen_Shot_2018-05-16_at_1.16.10_PM.png)'
-    };
-  }
-
-  async componentDidMount() {
-    const modality = (window.__INITIAL_STATE__ as InitialState).modality || {};
-
-    if (modality.name && modality.image) {
-      this.setState({
-        category: modality.name,
-        backgroundImage: `url(${modality.image})`;
-      });
-    }
-
-    const categories = await getCategories();
-
-    this.setState({
-      categories
-    }
-
-    const numCategories = categories.length;
-
-    if (numCategories > 0 && (this.state.category == null || this.state.backgroundImage == null)) {
-      const index = Math.floor(Math.random() * Math.floor(numCategories));
-
-      const category = categories[index];
-      const backgroundImage = `url("${category.image}?w=${window.innerWidth}")`;
-
-      this.setState({
-        categories,
-        category: category.name,
-        backgroundImage
-      });
-    }
   }
 
   render() {
-    const {backgroundImage, categories, category} = this.state;
+    const {categories, lead, modality} = this.props;
+    const image = categories.find(c => c.name === modality).image;
+    const backgroundImage = `url(${image})`;
 
     const inlineStyle = Object.assign({}, style, {
       backgroundImage
@@ -85,7 +43,7 @@ class Homepage extends React.Component<{}, ComponentState> {
                 <div className="col-12 col-md-8 mt-5 pt-5">
                   <p className="lead">
                     Find a trusted{' '}
-                    <a href="#" className="text-white">{category}</a>{' '}
+                    <a href="#" className="text-white">{modality}</a>{' '}
                     practicioner<br />
                     in Auckland.
                     </p>
@@ -104,6 +62,9 @@ class Homepage extends React.Component<{}, ComponentState> {
               </div>
             </div>
           </div>
+        </div>
+        <div className="py-5 lead container text-center">
+          {lead}
         </div>
         <PopularCategories categories={categories} />
         <FeaturedPracticioners />

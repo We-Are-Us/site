@@ -68,7 +68,7 @@ class Homepage extends React.Component<ComponentProps, {}> {
         </div>
         <hr />
         <div className="container">
-          <div className="row">
+          <div className="row pb-5">
             {benefits.map(benefit => (
               <div key={benefit.title} className="col-12 col-md-6">
                 <div className="card border-0">
@@ -81,9 +81,13 @@ class Homepage extends React.Component<ComponentProps, {}> {
             ))}
           </div>
         </div>
+        <div className="container-fluid bg-secondary py-2">
+          <div className="container">
+            <FeaturedPracticioners />
+          </div>
+        </div>
         {/*
         <PopularCategories categories={categories} />
-        <FeaturedPracticioners />
         */}
       </React.Fragment>
     );

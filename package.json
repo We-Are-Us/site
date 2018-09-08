@@ -9,8 +9,7 @@
     "npm": "^6.1.0"
   },
   "browserslist": [
-    "last 1 version",
-    "> 1%",
+    "> 2% in NZ",
     "not dead"
   ],
   "scripts": {

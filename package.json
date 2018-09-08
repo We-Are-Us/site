@@ -45,6 +45,8 @@
     "eslint-plugin-compat": "2.4.0",
     "parcel-bundler": "1.9.7",
     "parcel-plugin-bundle-visualiser": "1.1.2",
+    "parcel-plugin-typescript": "1.0.0",
+    "prettier": "1.14.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-markdown-renderer": "1.4.0",

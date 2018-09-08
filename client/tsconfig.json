@@ -8,19 +8,11 @@
     "noImplicitAny": false,
     "jsx": "react",
     "target": "es2017",
-    "lib": [
-      "dom",
-      "es6",
-      "scripthost"
-    ]
+    "lib": ["dom", "es6", "scripthost"]
   },
-  "include": [
-    "../client/**/*.ts",
-    "../client/**/*.tsx"
-  ],
-  "exclude": [
-    "../server/**/*.ts",
-    "../build/*",
-    "**/*.d.ts"
-  ]
+  "include": ["../client/**/*.ts", "../client/**/*.tsx"],
+  "exclude": ["../server/**/*.ts", "../build/*", "**/*.d.ts"],
+  "parcelTsPluginOptions": {
+    "transpileOnly": false
+  }
 }

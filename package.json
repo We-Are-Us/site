@@ -14,6 +14,7 @@
     "not dead"
   ],
   "scripts": {
+    "precommit": "npm run lint && npm test",
     "compile": "npm run compile:client && npm run compile:server",
     "compile:client": "env-cmd .env --no-override parcel build --detailed-report -d public -o app.js ./client/index.tsx && sass ./client/style/screen.scss ./public/screen.css",
     "postcompile:client": "eslint --no-ignore --config public/.eslintrc public/app.js",
@@ -43,6 +44,7 @@
     "concurrently": "3.6.0",
     "eslint": "4.19.1",
     "eslint-plugin-compat": "2.4.0",
+    "husky": "0.14.3",
     "parcel-bundler": "1.9.7",
     "parcel-plugin-bundle-visualiser": "1.1.2",
     "parcel-plugin-typescript": "1.0.0",

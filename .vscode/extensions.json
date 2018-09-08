@@ -3,6 +3,7 @@
     "EditorConfig.EditorConfig",
     "kevinmcgowan.TypeScriptImport",
     "mikestead.dotenv",
-    "ms-vscode.vscode-node-azure-pack"
+    "ms-vscode.vscode-node-azure-pack",
+    "eg2.tslint"
   ]
 }

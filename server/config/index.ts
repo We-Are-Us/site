@@ -39,7 +39,8 @@ const config = convict({
     containerId: {
       doc: 'Google Tag Manager container ID.',
       format: String,
-      default: ''
+      default: '',
+      env: 'GTM_CONTAINER_ID'
     }
   },
   appInsights: {
@@ -47,6 +48,7 @@ const config = convict({
       doc: 'Azure Application Insights instrumentation key.',
       format: String,
       default: '',
+      env: 'APPINSIGHTS_INSTRUMENTATIONKEY',
       secret: true
     }
   }

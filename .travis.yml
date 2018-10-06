@@ -3,10 +3,10 @@ language: node_js
 script:
  - npm run lint
  - npm audit
+
+before_deploy:
  - printf '%s\n' 'CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID}' 'CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN}' >.env
  - NODE_ENV=production npm run compile
-
-after_success:
  - mkdir deploy
  - cp -R public deploy/public
  - cp -R server deploy/server
@@ -21,4 +21,9 @@ after_success:
  - zip -r9 ../deploy.zip .
  - cd ..
  - unzip -lf deploy.zip
- - curl -X POST -u ${KUDU_USERNAME}:${KUDU_PASSWORD} --data-binary @deploy.zip https://${KUDU_SITENAME}.scm.azurewebsites.net/api/zipdeploy
+
+deploy:
+  provider: azure_web_apps
+  site: weareus-website
+  slot: staging
+  verbose: true

@@ -20,6 +20,27 @@ const config = convict({
     default: 'info',
     env: 'LOG_LEVEL'
   },
+  auth: {
+    audience: {
+      // doc: '',
+      format: 'url',
+      default: null,
+      env: 'AUTH_AUDIENCE',
+      sensitive: true
+    },
+    issuer: {
+      // doc: '',
+      format: 'url',
+      default: null,
+      env: 'AUTH_AUDIENCE'
+    },
+    jwksUri: {
+      // doc: '',
+      format: 'url',
+      default: null,
+      env: 'AUTH_JWKS_URI'
+    }
+  },
   contentful: {
     spaceId: {
       doc: 'Contentful space ID.',

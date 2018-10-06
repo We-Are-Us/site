@@ -1,7 +1,8 @@
-import {createClient} from 'contentful';
+import { createClient } from 'contentful';
+import config from '../config';
 
-const space = process.env.CONTENTFUL_SPACE_ID || '';
-const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN || '';
+const space = config.get('contentful.spaceId');
+const accessToken = config.get('contentful.accessToken');
 
 const contentfulClient = createClient({
   space,

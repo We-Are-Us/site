@@ -1,13 +1,14 @@
-import {Server} from 'hapi';
+import { Server } from 'hapi';
 import * as Vision from 'vision';
 import * as Inert from 'inert';
+import config from './config';
 import logger from './logging/logger';
 import configureRoutes from './routes/configure-routes';
 
 const DEFAULT_PORT = 8080;
 
 const server = new Server({
-  port: process.env.PORT || DEFAULT_PORT
+  port: config.get('port')
 });
 
 const start = async () => {
@@ -23,7 +24,7 @@ const start = async () => {
       layout: true,
       layoutPath: 'views/layout',
       partialsPath: 'views/partials',
-      isCached: process.env.NODE_ENV !== 'development'
+      isCached: config.get('env') === 'production'
     });
 
     await server.register(Inert);

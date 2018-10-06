@@ -11,8 +11,8 @@ const config = convict({
   },
   port: {
     doc: 'Server port.',
-    format: 'port',
-    default: 8080
+    format: String,
+    default: '8080'
   },
   logLevel: {
     doc: 'Logging level.',

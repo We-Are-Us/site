@@ -5,8 +5,6 @@ import config from './config';
 import logger from './logging/logger';
 import configureRoutes from './routes/configure-routes';
 
-const DEFAULT_PORT = 8080;
-
 const server = new Server({
   port: config.get('port')
 });

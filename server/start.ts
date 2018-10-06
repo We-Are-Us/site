@@ -1,4 +1,6 @@
 import { Server } from 'hapi';
+import * as jwt from 'hapi-auth-jwt2';
+import * as jwksRsa from 'jwks-rsa';
 import * as Vision from 'vision';
 import * as Inert from 'inert';
 import config from './config';
@@ -11,6 +13,25 @@ const server = new Server({
 
 const start = async () => {
   try {
+    await server.register(jwt);
+
+    server.auth.strategy('jwt', 'jwt', {
+      complete: true,
+      key: jwksRsa.hapiJwt2Key({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: config.get('auth.jwksUri')
+      }),
+      verifyOptions: {
+        audience: config.get('auth.audience'),
+        issuer: config.get('auth.issuer'),
+        algorithms: ['RS256']
+      },
+      // FIXME: add a proper dude here
+      validate: () => ({ isValid: true })
+    });
+
     await server.register(Vision);
 
     server.views({

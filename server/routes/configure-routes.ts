@@ -1,5 +1,6 @@
 import { Server, Lifecycle } from 'hapi';
 import { Entry } from 'contentful';
+import config from '../config';
 import contentfulClient from '../content/client';
 import getCategories from '../content/get-categories';
 import getText from '../content/get-text';
@@ -35,7 +36,7 @@ const handler: Lifecycle.Method = async (request, h) => {
       appInsightsKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
       gtmContainerId: process.env.GTM_CONTAINER_ID,
       jsBundle:
-        process.env.NODE_ENV !== 'development'
+        config.get('env') === 'production'
           ? '/public/app.js'
           : 'http://localhost:1234/app.js',
       initialState: JSON.stringify({ benefits, categories, lead, modality })

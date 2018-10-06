@@ -1,27 +1,17 @@
-import {createLogger, format, transports} from 'winston';
-const {combine, timestamp, printf} = format;
+import { createLogger, format, transports } from 'winston';
+import config from '../config';
+const { combine, timestamp, printf, splat } = format;
 
-const level: string = ((logLevel: string) => {
-  if (['error', 'warn', 'info', 'verbose', 'debug', 'silly'].indexOf(logLevel) > -1) {
-    return logLevel;
-  }
+const level = config.get('logLevel');
 
-  return 'info';
-})(process.env.LOG_LEVEL || 'info');
-
-const logFormat = printf(info => (
-  `${info.timestamp} ${info.level}: ${info.message}`
-));
+const logFormat = printf(
+  info => `${info.timestamp} ${info.level}: ${info.message}`
+);
 
 const logger = createLogger({
   level,
-  format: combine(
-    timestamp(),
-    logFormat
-  ),
-  transports: [
-    new transports.Console()
-  ]
+  format: combine(splat(), timestamp(), logFormat),
+  transports: [new transports.Console()]
 });
 
 export default logger;

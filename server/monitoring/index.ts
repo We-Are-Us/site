@@ -1,8 +1,11 @@
+import config from '../config';
 import logger from '../logging/logger';
-import {setup} from 'applicationinsights';
+import { setup } from 'applicationinsights';
 
-if (process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
-  setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY).start();
+const instrumentationKey = config.get('appInsights.instrumentationKey');
+
+if (instrumentationKey !== '') {
+  setup(instrumentationKey).start();
 
   logger.log('debug', 'Applicationm Insights started.');
 } else {

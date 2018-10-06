@@ -33,8 +33,8 @@ const handler: Lifecycle.Method = async (request, h) => {
 
   return h
     .view('index', {
-      appInsightsKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
-      gtmContainerId: process.env.GTM_CONTAINER_ID,
+      appInsightsKey: config.get('appInsights.instrumentationKey'),
+      gtmContainerId: config.get('gtm.containerId'),
       jsBundle:
         config.get('env') === 'production'
           ? '/public/app.js'

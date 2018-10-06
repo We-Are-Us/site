@@ -8,7 +8,7 @@ import configureRoutes from './routes/configure-routes';
 const DEFAULT_PORT = 8080;
 
 const server = new Server({
-  port: process.env.PORT || DEFAULT_PORT
+  port: config.get('port')
 });
 
 const start = async () => {

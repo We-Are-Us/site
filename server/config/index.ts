@@ -9,6 +9,11 @@ const config = convict({
     default: 'development',
     env: 'NODE_ENV'
   },
+  port: {
+    doc: 'Server port.',
+    format: 'port',
+    default: 8080
+  },
   logLevel: {
     doc: 'Logging level.',
     format: ['error', 'warn', 'info', 'verbose', 'debug', 'silly'],
@@ -27,6 +32,21 @@ const config = convict({
       format: String,
       default: '',
       env: 'CONTENTFUL_ACCESS_TOKEN',
+      secret: true
+    }
+  },
+  gtm: {
+    containerId: {
+      doc: 'Google Tag Manager container ID.',
+      format: String,
+      default: ''
+    }
+  },
+  appInsights: {
+    instrumentationKey: {
+      doc: 'Azure Application Insights instrumentation key.',
+      format: String,
+      default: '',
       secret: true
     }
   }

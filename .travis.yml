@@ -27,3 +27,5 @@ deploy:
   site: weareus-website
   slot: staging
   verbose: true
+  on:
+    branch: master

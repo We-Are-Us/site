@@ -1,10 +1,12 @@
 import { Server, Lifecycle } from 'hapi';
 import { Entry } from 'contentful';
+import { Marked } from 'marked-ts';
 import config from '../config';
 import contentfulClient from '../content/client';
 import getCategories from '../content/get-categories';
 import getText from '../content/get-text';
 import getTitledText from '../content/get-titled-text';
+import { footerLinks } from '../features/footer-links';
 
 const EXPIRES_IN_SECONDS = 7200;
 
@@ -39,7 +41,11 @@ const handler: Lifecycle.Method = async (request, h) => {
         config.get('env') === 'production'
           ? '/public/app.js'
           : 'http://localhost:1234/app.js',
-      initialState: JSON.stringify({ benefits, categories, lead, modality })
+      initialState: JSON.stringify({ benefits, categories, lead, modality }),
+      navigationTextColor: 'white',
+      navigationOutlineColor: 'light',
+      lead: Marked.parse(lead),
+      footerLinks
     })
     .header('Accept-CH', 'DPR, Viewport-Width, Width')
     .header('link', `<${modality.image}>; rel=prefetch`);
@@ -71,6 +77,19 @@ const configureRoutes = (server: Server) => {
       path,
       handler
     });
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/register',
+    handler: (request, h) => {
+      // TODO: put in features from contentful
+      return h.view('register', {
+        navigationTextColor: 'primary',
+        navigationOutlineColor: 'primary',
+        footerLinks
+      });
+    }
   });
 
   server.route({

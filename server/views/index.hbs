@@ -1,6 +1,7 @@
-{{#if initialState}}
-<script>
-  window.__INITIAL_STATE__ = {{{initialState}}};
-</script>
-{{/if}}
-<div id="react-root"></div>
+{{> hero}}
+<div class="pt-5 pb-3 lead container text-center">
+  {{{lead}}}
+</div>
+<hr />
+{{> promo}}
+{{> newsletter}}

@@ -10,9 +10,13 @@
 </head>
 <body>
   {{> gtm-iframe}}
+  {{> navigation}}
   {{{ content }}}
+  {{> footer}}
   {{#if jsBundle}}
-    <script src="{{jsBundle}}"></script>
+    <!--
+      <script src="{{jsBundle}}"></script>
+    -->
   {{/if}}
 </body>
 </html>

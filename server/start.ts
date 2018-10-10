@@ -8,7 +8,7 @@ import logger from './logging/logger';
 import configureRoutes from './routes/configure-routes';
 
 const server = new Server({
-  port: process.env.PORT || 8080
+  port: process.env.PORT || 3000
 });
 
 const start = async () => {

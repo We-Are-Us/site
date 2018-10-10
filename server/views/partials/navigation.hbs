@@ -18,22 +18,13 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto pt-1">
-          <li class="nav-item active pr-2">
-            <a
-              class="nav-link text-{{navigationTextColor}}"
-              href="#"
-            >
-              Find a Practicioner <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link text-{{navigationTextColor}}" href="#">Register as a Practicioner</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link text-{{navigationTextColor}}" href="#">Sign up</a>
-          </li>
+          {{#each headerLinks}}
+            <li class="nav-item px-2">
+              <a class="nav-link text-{{../navigationTextColor}}" href="{{this.href}}">{{this.text}}</a>
+            </li>
+          {{/each}}
           <li class="nav-item pl-2">
-            <a class="btn btn-outline-{{navigationOutlineColor}}" href="#">Login</a>
+            <a class="btn btn-outline-{{navigationOutlineColor}}" href="/register">Register</a>
           </li>
         </ul>
       </div>

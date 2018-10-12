@@ -21,11 +21,10 @@ before_deploy:
  - zip -r9 ../deploy.zip .
  - cd ..
  - unzip -lf deploy.zip
+ - curl -X POST -u ${KUDU_USERNAME}:${KUDU_PASSWORD} --data-binary @deploy.zip https://${KUDU_SITENAME}.scm.azurewebsites.net/api/zipdeploy
 
 deploy:
   provider: azure_web_apps
   site: weareus-website
   slot: staging
   verbose: true
-  on:
-    branch: master

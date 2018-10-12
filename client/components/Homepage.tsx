@@ -25,7 +25,7 @@ class Homepage extends React.Component<ComponentProps, {}> {
   }
 
   render() {
-    const {benefits, categories, lead, modality} = this.props;
+    const { benefits, categories, lead, modality } = this.props;
     const image = categories.find(c => c.name === modality).image;
     const backgroundImage = `url(${image})`;
 
@@ -35,37 +35,6 @@ class Homepage extends React.Component<ComponentProps, {}> {
 
     return (
       <React.Fragment>
-        <div style={inlineStyle}>
-          <div className="jumbotron jumbotron-fluid text-white" style={({backgroundColor: 'transparent'})}>
-            <div className="container">
-              <div className="row">
-                <div className="col-12 col-md-8 mt-5 pt-5">
-                  <p className="lead">
-                    Find a trusted{' '}
-                    <a href="#" className="text-white">{modality}</a>{' '}
-                    practicioner<br />
-                    in Auckland.
-                    </p>
-                  <form method="post" action="search">
-                    <div className="form-group">
-                      <input
-                        type="search"
-                        name="query"
-                        placeholder="Search practicioners"
-                        className="form-control"
-                      />
-                      <small className="form-text">e.g. Yoga, Bowen Therapy, etc.</small>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="pt-5 pb-3 lead container text-center">
-          <MarkdownRenderer markdown={lead} />
-        </div>
-        <hr />
         <div className="container">
           <div className="row pb-5">
             {benefits.map(benefit => (
@@ -90,7 +59,6 @@ class Homepage extends React.Component<ComponentProps, {}> {
         */}
       </React.Fragment>
     );
-
   }
 }
 

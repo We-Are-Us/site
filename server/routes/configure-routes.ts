@@ -5,6 +5,8 @@ import logger from '../logging/logger';
 import config from '../config';
 import contentfulClient from '../content/client';
 import getCategories from '../content/get-categories';
+import getPracticioner from '../content/get-practitioner';
+import getPracticioners from '../content/get-practitioners';
 import getText from '../content/get-text';
 import getTitledText from '../content/get-titled-text';
 import { headerLinks } from '../features/header-links';
@@ -90,20 +92,44 @@ const configureRoutes = (server: Server) => {
 
   server.route({
     method: 'GET',
+    path: '/practitioners',
+    handler: async (request, h) => {
+      const entries = await getPracticioners(contentfulClient);
+      const practitioners = entries.map(entry => entry.fields);
+
+      logger.debug('practitioners: %O', practitioners);
+
+      return h.view(
+        'practitioners',
+        Object.assign({ practitioners }, getViewContext(request))
+      );
+    }
+  });
+
+  server.route({
+    method: 'GET',
     path: '/practitioners/{name}',
-    handler: (request, h) => {
+    handler: async (request, h) => {
+      const identifier = '6bcd8e2a-030c-4763-b3d8-38234f28da9d';
+      const entry = await getPracticioner(contentfulClient, identifier);
+      const practitioner = entry.fields;
+
+      logger.debug('practitioner: %O', practitioner);
+      // FIXME: we want address and we can convert to lat/lon with other tools
+      logger.debug(
+        'practitioner.contactLocation %O',
+        practitioner.contactLocation
+      );
+      // 6bcd8e2a-030c-4763-b3d8-38234f28da9d
       // TODO: look up
       const modalities = ['Reflexology', 'Reki'];
-      const heroImage = '/public/assets/profile_header_1.jpg';
-      const practiceName = 'Walk In Light';
-      const location = 'Albany, Auckland';
+      // const heroImage = '/public/assets/profile_header_1.jpg';
+      // const practiceName = 'Walk In Light';
+      // const location = 'Albany, Auckland';
 
       return h.view(
         'practitioner',
-        Object.assign(
-          { modalities, heroImage, practiceName, location },
-          getViewContext(request)
-        )
+        Object.assign({ practitioner }, getViewContext(request))
       );
     }
   });

@@ -1,27 +1,31 @@
 <div class="container-fluid px-0">
-  <div class="pt-5" />
+  <div class="pt-5"></div>
   <img
     class="img-fluid w-100 mt-3 border-top-1"
-    src="{{heroImage}}"
+    src="{{practitioner.headerPhoto.fields.file.url}}"
   />
 </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-8 pt-3">
-        <div class="text-muted">
-          {{#each modalities}}
-            <span class="pr-2">{{this}}</span>
-          {{/each}}
-        </div>
-        <h1 class="h1">{{practiceName}}</h1>
-        <div class="text-muted">{{location}}</div>
-        <h3 class="h3 mt-3">About Rachel Barclay</h3>
-        <p>
-          Lorem ipsum dolor sit amet, ea cum maluisset splendide, ut autem
-          atqui blandit est, cu omnis soluta dissentiet his.
-        </p>
-        <a href="#" class="text-primary font-weight-bold">Read More</a>
+<div class="container">
+  <div class="row">
+    <div class="col-8 pt-3">
+      <div class="text-muted">
+        {{#each modalities}}
+          <span class="pr-2">{{this}}</span>
+        {{/each}}
       </div>
-      <div class="col-4" />
+      <h1 class="h1">{{practitioner.title}}</h1>
+      <!--
+      <div class="text-muted">{{practitioner.contactLocation}}</div>
+      -->
+      <h3 class="h3 mt-3">{{practitioner.aboutTitle}}</h3>
+      <p>
+        {{practitioner.aboutText}}
+      </p>
+      <!--
+      <a href="#" class="text-primary font-weight-bold">Read More</a>
+      -->
     </div>
+    <div class="col-4"></div>
   </div>
+</div>
+{{> promo}}

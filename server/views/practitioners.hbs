@@ -1,0 +1,12 @@
+<div class="py-5"></div>
+<div class="container pb-5">
+  <h1>Registered Practitioners</h1>
+  <ul class="list-group">
+    {{#each practitioners}}
+      <li class="list-group-item border-left-0 border-right-0">
+        <a href="/practitioners/{{identifier}}">{{title}}</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>
+{{> promo}}

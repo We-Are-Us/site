@@ -6,5 +6,7 @@ try {
   console.warn('Exception thrown when loading dotenv-safe');
 }
 
+console.dir(process.env);
+
 require('./server/monitoring/index');
 require('./server/start');

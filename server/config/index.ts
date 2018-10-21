@@ -63,7 +63,7 @@ const config = convict({
       default: '',
       env: 'GTM_CONTAINER_ID'
     }
-  },
+  } /* ,
   appInsights: {
     instrumentationKey: {
       doc: 'Azure Application Insights instrumentation key.',
@@ -72,7 +72,7 @@ const config = convict({
       env: 'APPINSIGHTS_INSTRUMENTATIONKEY',
       secret: true
     }
-  }
+  } */
 });
 
 config.validate({ allowed: 'strict' });

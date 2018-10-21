@@ -25,6 +25,5 @@ before_deploy:
 
 deploy:
   provider: azure_web_apps
-  site: weareus-website
-  slot: staging
+  site: weareus
   verbose: true

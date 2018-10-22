@@ -8,8 +8,8 @@ try {
 
 console.dir(process.env);
 
-const logger = require('./server/logging/logger');
+const logger = require('./server/logging/logger').default;
 
-logger.debug('process.env %O', process.env);
+logger.log('debug', 'process.env %O', process.env);
 
 require('./server/start');

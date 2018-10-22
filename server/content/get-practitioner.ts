@@ -1,5 +1,6 @@
 import { ContentfulClientApi, Entry, EntryCollection } from 'contentful';
 import Practitioner from '../domain/Practitioner';
+import logger from '../logging/logger';
 
 const getPractitioner = async (
   client: ContentfulClientApi,
@@ -14,6 +15,8 @@ const getPractitioner = async (
   if (entries.items.length === 0) {
     throw new Error();
   }
+
+  logger.debug('entries.items: %O', entries.items);
 
   return entries.items[0];
 };

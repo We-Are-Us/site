@@ -2,7 +2,7 @@ import { Asset } from 'contentful';
 
 interface Category {
   name: string;
-  image: Asset;
+  image?: Asset;
 }
 
 export default Category;

@@ -40,7 +40,6 @@ const handler: Lifecycle.Method = async (request, h) => {
 
   const entries = promises[0];
   const lead = promises[1];
-  const benefits = [promises[2], promises[3]];
 
   const categories = entries.map((entry: Entry<any>) => ({
     name: entry.fields.name,

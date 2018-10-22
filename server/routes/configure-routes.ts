@@ -15,7 +15,6 @@ import { footerLinks } from '../features/footer-links';
 const EXPIRES_IN_SECONDS = 7200;
 
 const getViewContext = (request: Request) => ({
-  appInsightsKey: config.get('appInsights.instrumentationKey'),
   gtmContainerId: config.get('gtm.containerId'),
   jsBundle:
     config.get('env') === 'production'
@@ -32,22 +31,22 @@ const handler: Lifecycle.Method = async (request, h) => {
   const client = contentfulClient;
 
   const promises = await Promise.all([
-    getCategories(client),
-    getText(client, 'lead'),
-    getTitledText(client, 'benefit-1'),
-    getTitledText(client, 'benefit-2')
+    // getCategories(client),
+    getText(client, 'lead')
+    // getTitledText(client, 'benefit-1'),
+    // getTitledText(client, 'benefit-2')
   ]);
 
-  const entries = promises[0];
-  const lead = promises[1];
+  // const entries = promises[0];
+  const lead = promises[0];
 
-  const categories = entries.map((entry: Entry<any>) => ({
+  /* const categories = entries.map((entry: Entry<any>) => ({
     name: entry.fields.name,
     image: entry.fields.image.fields.file.url
-  }));
+  })); */
 
-  const i = Math.floor(Math.random() * categories.length);
-  const modality = categories[i];
+  // const i = Math.floor(Math.random() * categories.length);
+  // const modality = categories[i];
 
   return h
     .view(
@@ -59,8 +58,8 @@ const handler: Lifecycle.Method = async (request, h) => {
         getViewContext(request)
       )
     )
-    .header('Accept-CH', 'DPR, Viewport-Width, Width')
-    .header('link', `<${modality.image}>; rel=prefetch`);
+    .header('Accept-CH', 'DPR, Viewport-Width, Width');
+  // .header('link', `<${modality.image}>; rel=prefetch`);
 };
 
 const configureRoutes = (server: Server) => {

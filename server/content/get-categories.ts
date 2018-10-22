@@ -9,7 +9,7 @@ const getCategories = async (
     content_type: 'category'
   });
 
-  logger.debug('entries.items: %O', entries.items);
+  logger.debug('entries.items: %j', entries.items);
 
   return entries.items;
 };

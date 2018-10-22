@@ -16,7 +16,7 @@ const getPractitioner = async (
     throw new Error();
   }
 
-  logger.debug('entries.items: %O', entries.items);
+  logger.debug('entries.items: %j', entries.items);
 
   return entries.items[0];
 };

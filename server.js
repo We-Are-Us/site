@@ -6,6 +6,8 @@ try {
   console.warn('Exception thrown when loading dotenv-safe');
 }
 
+console.dir(process.env);
+
 const logger = require('./server/logging/logger');
 
 logger.debug('process.env %O', process.env);

@@ -32,7 +32,7 @@ const config = convict({
       // doc: '',
       format: 'url',
       default: null,
-      env: 'AUTH_AUDIENCE'
+      env: 'AUTH_ISSUER'
     },
     jwksUri: {
       // doc: '',

@@ -92,8 +92,7 @@ const configureRoutes = (server: Server) => {
     method: 'GET',
     path: '/practitioners',
     handler: async (request, h) => {
-      const entries = await getPracticioners(contentfulClient);
-      const practitioners = entries.map(entry => entry.fields);
+      const practitioners = await getPracticioners(contentfulClient);
 
       logger.debug('practitioners: %O', practitioners);
 
@@ -109,8 +108,7 @@ const configureRoutes = (server: Server) => {
     path: '/practitioners/{name}',
     handler: async (request, h) => {
       const identifier = '6bcd8e2a-030c-4763-b3d8-38234f28da9d';
-      const entry = await getPracticioner(contentfulClient, identifier);
-      const practitioner = entry.fields;
+      const practitioner = await getPracticioner(contentfulClient, identifier);
 
       logger.debug('practitioner: %O', practitioner);
       // FIXME: we want address and we can convert to lat/lon with other tools
@@ -148,12 +146,9 @@ const configureRoutes = (server: Server) => {
     path: '/api/content/entries',
     handler: async (request, h) => {
       const client = contentfulClient;
-      const entries = await getCategories(client);
+      const categories = await getCategories(client);
 
-      return entries.map((entry: Entry<any>) => ({
-        name: entry.fields.name,
-        image: entry.fields.image.fields.file.url
-      }));
+      return categories;
     }
   });
 };

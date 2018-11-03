@@ -25,13 +25,18 @@
     "prestart:dev": "npm run compile:server",
     "start:dev": "concurrently --kill-others \"node server.js\" \"parcel --no-cache -d public -o app.js ./client/index.tsx --log-level 3\"",
     "start:prod": "env-cmd .env --no-override node server.js",
-    "test": "echo 'no tests ATM'"
+    "test": "npm run test:server",
+    "pretest:server": "npm run compile:server",
+    "test:server": "NODE_ENV=test jest --no-cache"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.9",
     "eslint": "^4.19.1",
     "eslint-plugin-compat": "^2.5.1",
     "husky": "^0.14.3",
-    "prettier": "^1.14.2"
+    "jest": "^23.6.0",
+    "prettier": "^1.14.2",
+    "ts-jest": "^23.10.4"
   },
   "dependencies": {
     "@types/classnames": "^2.2.6",

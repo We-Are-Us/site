@@ -1,8 +1,6 @@
-import { Asset } from 'contentful';
-
 interface Category {
   name: string;
-  image?: Asset;
+  imageUrl?: string;
 }
 
 export default Category;

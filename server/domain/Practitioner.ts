@@ -1,9 +1,7 @@
-import { Asset } from 'contentful';
-
 interface Practitioner {
   identifier: string;
-  headerPhoto?: Asset;
-  profilePhoto?: Asset;
+  headerPhotoUrl?: string;
+  profilePhotoUrl?: string;
   title: string;
   aboutTitle?: string;
   aboutText: string;

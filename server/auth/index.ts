@@ -28,26 +28,26 @@ export const transformer = async (credentials: Credentials) => {
 
   logger.debug('credentials: %o', credentials);
 
+  const connectionOptions: ConnectionOptions = {
+    type: 'postgres',
+    host: process.env.TYPEORM_HOST || 'localhost',
+    port: parseInt(process.env.TYPEORM_PORT || '5432', 10),
+    username: process.env.TYPEORM_USERNAME || '',
+    password: process.env.TYPEORM_PASSWORD || '',
+    database: process.env.TYPEORM_DATABASE || '',
+    entities: [Account],
+    // This has to be off for Postgres to not go boom
+    synchronize: false,
+    logging: true
+  };
+
+  logger.debug('connectionOptions: %o', connectionOptions);
+
+  const connection = await createConnection(connectionOptions);
+
+  logger.debug('connection.entityMetadatas: %o', connection.entityMetadatas);
+
   try {
-    const connectionOptions: ConnectionOptions = {
-      type: 'postgres',
-      host: process.env.TYPEORM_HOST || 'localhost',
-      port: parseInt(process.env.TYPEORM_PORT || '5432', 10),
-      username: process.env.TYPEORM_USERNAME || '',
-      password: process.env.TYPEORM_PASSWORD || '',
-      database: process.env.TYPEORM_DATABASE || '',
-      entities: [Account],
-      // This has to be off for Postgres to not go boom
-      synchronize: false,
-      logging: true
-    };
-
-    logger.debug('connectionOptions: %o', connectionOptions);
-
-    const connection = await createConnection(connectionOptions);
-
-    logger.debug('connection.entityMetadatas: %o', connection.entityMetadatas);
-
     logger.debug('search for account where username: %s', credentials.email);
 
     const account: Account | undefined = await connection
@@ -74,6 +74,8 @@ export const transformer = async (credentials: Credentials) => {
     logger.error(err.message);
 
     throw ono.error('Error when trying to query database', err);
+  } finally {
+    await connection.close();
   }
 
   logger.debug('credentials: %o', credentials);

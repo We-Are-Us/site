@@ -26,6 +26,8 @@ const getViewContext = (request: Request) => ({
 });
 
 const handler: Lifecycle.Method = async (request, h) => {
+  logger.debug('request.auth: %o', request.auth);
+
   // TODO: this should go in a separate module so it can be cached, reused, etc.
   const client = contentfulClient;
 
@@ -84,6 +86,12 @@ const configureRoutes = (server: Server) => {
   server.route({
     method: 'GET',
     path: '/',
+    options: {
+      auth: {
+        strategy: 'auth0',
+        mode: 'try'
+      }
+    },
     handler
   });
 

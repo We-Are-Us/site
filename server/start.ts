@@ -1,36 +1,62 @@
-import { Server } from 'hapi';
-import * as jwt from 'hapi-auth-jwt2';
-import * as jwksRsa from 'jwks-rsa';
+/// <reference path="./types/index.d.ts" />
+import 'reflect-metadata';
+import { Server, ResponseToolkit } from 'hapi';
 import * as Vision from 'vision';
 import * as Inert from 'inert';
+import * as hapiAuthAuth0 from 'hapi-auth-auth0';
 import config from './config';
 import logger from './logging/logger';
 import configureRoutes from './routes/configure-routes';
 
+interface Credentials {
+  sub: string;
+  cn: string;
+  scope?: string;
+}
+
 const server = new Server({
-  port: process.env.PORT || 3000
+  port: process.env.PORT || 5000
 });
 
 const start = async () => {
   try {
-    await server.register(jwt);
+    await server.register({
+      plugin: hapiAuthAuth0,
+      options: {
+        // TODO: move to config
+        domain: process.env.AUTH0_DOMAIN,
+        client_id: process.env.AUTH0_CLIENT_ID,
+        client_secret: process.env.AUTH0_CLIENT_SECRET,
+        success: async (
+          credentials: any,
+          request: Request,
+          h: ResponseToolkit
+        ) => {
+          logger.debug('success: %O', credentials);
+        },
+        transformer: async (credentials: Credentials) => {
+          const email = credentials.sub.split('|').slice(-1)[0];
 
-    server.auth.strategy('jwt', 'jwt', {
-      complete: true,
-      key: jwksRsa.hapiJwt2Key({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: config.get('auth.jwksUri')
-      }),
-      verifyOptions: {
-        audience: config.get('auth.audience'),
-        issuer: config.get('auth.issuer'),
-        algorithms: ['RS256']
-      },
-      // FIXME: add a proper dude here
-      validate: () => ({ isValid: true })
+          credentials.cn = email.substr(0, email.indexOf('@'));
+          // TODO: lookup user in db and workout role
+          // also if no user what do we do?
+          credentials.scope = 'user';
+
+          return credentials;
+        },
+        // optional
+        error: async (err: Error, request: Request, h: ResponseToolkit) => {
+          logger.error(err.message);
+
+          const response = h.response(
+            '<h1>Oh hey, sorry, something went wrong.</h1>'
+          );
+
+          return response.takeover();
+        }
+      }
     });
+    server.auth.strategy('auth0', 'auth0');
 
     await server.register(Vision);
 

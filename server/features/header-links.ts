@@ -1,7 +1,11 @@
 import Link from './Link';
 
-export const headerLinks: ReadonlyArray<Link> = [
+const getHeaderLinks = (isLoggedIn: boolean): ReadonlyArray<Link> => [
   { href: '/about', text: 'About' },
   { href: '/practitioners', text: 'Practitioners' },
-  { href: '/login', text: 'Login' }
+  isLoggedIn
+    ? { href: '/lgoout', text: 'Logout' }
+    : { href: '/login', text: 'Login' }
 ];
+
+export default getHeaderLinks;

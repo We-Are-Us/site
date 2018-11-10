@@ -1,5 +1,4 @@
 import { Server, Request, Lifecycle } from 'hapi';
-import { Entry } from 'contentful';
 import { Marked } from 'marked-ts';
 import logger from '../logging/logger';
 import config from '../config';
@@ -9,7 +8,7 @@ import getPracticioner from '../content/get-practitioner';
 import getPracticioners from '../content/get-practitioners';
 import getText from '../content/get-text';
 import getTitledText from '../content/get-titled-text';
-import { headerLinks } from '../features/header-links';
+import getHeaderLinks from '../features/header-links';
 import { footerLinks } from '../features/footer-links';
 
 const EXPIRES_IN_SECONDS = 7200;
@@ -22,7 +21,7 @@ const getViewContext = (request: Request) => ({
       : 'http://localhost:1234/app.js',
   navigationTextColor: request.url.pathname === '/' ? 'white' : 'primary',
   navigationOutlineColor: request.url.pathname === '/' ? 'light' : 'primary',
-  headerLinks,
+  headerLinks: getHeaderLinks(request.auth.isAuthenticated),
   footerLinks
 });
 
@@ -149,6 +148,23 @@ const configureRoutes = (server: Server) => {
       const categories = await getCategories(client);
 
       return categories;
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/secure',
+    options: {
+      auth: {
+        strategy: 'auth0',
+        scope: ['user', 'admin']
+      }
+    },
+    handler: async (request, h) => {
+      logger.debug('request.headers: %O', request.headers);
+      logger.debug('request.auth: %O', request.auth);
+
+      return 'ok';
     }
   });
 };

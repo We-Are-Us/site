@@ -4,6 +4,7 @@
     "kevinmcgowan.TypeScriptImport",
     "mikestead.dotenv",
     "ms-vscode.vscode-node-azure-pack",
+    "ckolkman.vscode-postgres",
     "eg2.tslint"
   ]
 }

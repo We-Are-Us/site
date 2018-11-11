@@ -1,36 +1,32 @@
-import { Server } from 'hapi';
-import * as jwt from 'hapi-auth-jwt2';
-import * as jwksRsa from 'jwks-rsa';
+/// <reference path="./types/index.d.ts" />
+import 'reflect-metadata';
+import { Server, ResponseToolkit } from 'hapi';
 import * as Vision from 'vision';
 import * as Inert from 'inert';
+import * as hapiAuthAuth0 from 'hapi-auth-auth0';
+import { Credentials, success, transformer, error } from './auth';
 import config from './config';
 import logger from './logging/logger';
 import configureRoutes from './routes/configure-routes';
 
 const server = new Server({
-  port: process.env.PORT || 3000
+  port: process.env.PORT || 5000
 });
 
 const start = async () => {
   try {
-    await server.register(jwt);
-
-    server.auth.strategy('jwt', 'jwt', {
-      complete: true,
-      key: jwksRsa.hapiJwt2Key({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: config.get('auth.jwksUri')
-      }),
-      verifyOptions: {
-        audience: config.get('auth.audience'),
-        issuer: config.get('auth.issuer'),
-        algorithms: ['RS256']
-      },
-      // FIXME: add a proper dude here
-      validate: () => ({ isValid: true })
+    await server.register({
+      plugin: hapiAuthAuth0,
+      options: {
+        domain: process.env.AUTH0_DOMAIN,
+        client_id: process.env.AUTH0_CLIENT_ID,
+        client_secret: process.env.AUTH0_CLIENT_SECRET,
+        success,
+        transformer,
+        error
+      }
     });
+    server.auth.strategy('auth0', 'auth0');
 
     await server.register(Vision);
 

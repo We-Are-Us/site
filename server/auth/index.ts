@@ -1,8 +1,8 @@
 import logger from '../logging/logger';
 import { ResponseToolkit } from 'hapi';
-import { createConnection, ConnectionOptions } from 'typeorm';
 import { Account } from '../entity/Account';
 import * as ono from 'ono';
+import { createDatabaseConnection } from '../database';
 
 export interface Credentials {
   sub: string;
@@ -28,22 +28,7 @@ export const transformer = async (credentials: Credentials) => {
 
   logger.debug('credentials: %o', credentials);
 
-  const connectionOptions: ConnectionOptions = {
-    type: 'postgres',
-    host: process.env.TYPEORM_HOST || 'localhost',
-    port: parseInt(process.env.TYPEORM_PORT || '5432', 10),
-    username: process.env.TYPEORM_USERNAME || '',
-    password: process.env.TYPEORM_PASSWORD || '',
-    database: process.env.TYPEORM_DATABASE || '',
-    entities: [Account],
-    // This has to be off for Postgres to not go boom
-    synchronize: false,
-    logging: true
-  };
-
-  logger.debug('connectionOptions: %o', connectionOptions);
-
-  const connection = await createConnection(connectionOptions);
+  const connection = await createDatabaseConnection();
 
   logger.debug('connection.entityMetadatas: %o', connection.entityMetadatas);
 

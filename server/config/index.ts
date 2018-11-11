@@ -41,6 +41,14 @@ const config = convict({
       env: 'AUTH_JWKS_URI'
     }
   },
+  database: {
+    url: {
+      doc: 'Database connection URL',
+      format: String,
+      default: 'postgres://localhost:5432/weareus',
+      env: 'DATABASE_URL'
+    }
+  },
   contentful: {
     spaceId: {
       doc: 'Contentful space ID.',

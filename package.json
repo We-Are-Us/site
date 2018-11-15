@@ -65,6 +65,7 @@
     "hapi-auth-auth0": "^0.2.0",
     "if-env": "^1.0.4",
     "inert": "^5.1.2",
+    "mailchimp-api-v3": "^1.12.1",
     "marked-ts": "^1.0.0-beta.4",
     "ono": "^4.0.10",
     "parcel-bundler": "^1.10.3",

@@ -71,16 +71,21 @@ const config = convict({
       default: '',
       env: 'GTM_CONTAINER_ID'
     }
-  } /* ,
-  appInsights: {
-    instrumentationKey: {
-      doc: 'Azure Application Insights instrumentation key.',
+  },
+  mailchimp: {
+    apiKey: {
+      doc: 'Mailchimp API key',
       format: String,
-      default: '',
-      env: 'APPINSIGHTS_INSTRUMENTATIONKEY',
-      secret: true
+      default: null,
+      env: 'MAILCHIMP_API_KEY'
+    },
+    listId: {
+      doc: 'Mailchimp List ID',
+      format: String,
+      default: null,
+      env: 'MAILCHIMP_LIST_ID'
     }
-  } */
+  }
 });
 
 config.validate({ allowed: 'strict' });

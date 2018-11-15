@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const images = [
   'https://images.ctfassets.net/xu4zh386cjva/3xv3fuh0ggaQcWawCGu86k/8bdc230bd90f7097a517cf4e9e820b3f/placeholder_4.png',
@@ -7,7 +7,7 @@ const images = [
   'https://images.ctfassets.net/xu4zh386cjva/3M7Na46NPiW04ukGOmcUiO/90df2c6edcc0c20650022dc8f689c18a/placeholder_6.png'
 ];
 
-const FeaturedPracticioners: React.SFC<{}> = () => (
+const FeaturedPracticioners: React.FunctionComponent<{}> = () => (
   <div className="container my-4">
     <div className="row">
       <div className="col-12">
@@ -18,7 +18,9 @@ const FeaturedPracticioners: React.SFC<{}> = () => (
       {images.map(image => (
         <div key={image} className="col-12 col-md-6 col-lg-4">
           <div className="card border-0 rounded-0 p-4">
-            <Link to="practicioner"><img src={image} className="card-img-top" /></Link>
+            <Link to="practicioner">
+              <img src={image} className="card-img-top" />
+            </Link>
             <div className="card-body px-0 pt-1">
               <div className="text-muted">
                 <span className="pr-3">Yoga</span>

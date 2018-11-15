@@ -21,13 +21,15 @@ const links = [
   }
 ];
 
-const Footer: React.SFC<{}> = () => (
+const Footer: React.FunctionComponent<{}> = () => (
   <footer className="container-fluid bg-white py-4">
     <div className="container">
       <img src={imgSrc} itemProp="logo" height="32" />
       {links.map(link => (
         <span key={link.text} className="px-2 px-md-3">
-          <a href={link.href} className="text-muted">{link.text}</a>
+          <a href={link.href} className="text-muted">
+            {link.text}
+          </a>
         </span>
       ))}
     </div>

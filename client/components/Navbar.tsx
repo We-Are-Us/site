@@ -4,6 +4,6 @@ interface ComponentProps {
   white: boolean;
 }
 
-const Navbar: React.SFC<ComponentProps> = () => null;
+const Navbar: React.FunctionComponent<ComponentProps> = () => null;
 
 export default Navbar;

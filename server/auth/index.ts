@@ -17,6 +17,8 @@ export const success = async (
   h: ResponseToolkit
 ) => {
   logger.debug('success: %O', credentials);
+
+  return h.continue;
 };
 
 export const transformer = async (credentials: Credentials) => {

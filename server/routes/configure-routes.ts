@@ -10,6 +10,7 @@ import getText from '../content/get-text';
 import getTitledText from '../content/get-titled-text';
 import getHeaderLinks from '../features/header-links';
 import { footerLinks } from '../features/footer-links';
+import isLoggedIn from './isLoggedIn';
 
 const EXPIRES_IN_SECONDS = 7200;
 
@@ -21,7 +22,7 @@ const getViewContext = (request: Request) => ({
       : 'http://localhost:1234/app.js',
   navigationTextColor: request.url.pathname === '/' ? 'white' : 'primary',
   navigationOutlineColor: request.url.pathname === '/' ? 'light' : 'primary',
-  headerLinks: getHeaderLinks(request.auth.isAuthenticated),
+  headerLinks: getHeaderLinks(isLoggedIn(request)),
   footerLinks
 });
 
@@ -86,12 +87,6 @@ const configureRoutes = (server: Server) => {
   server.route({
     method: 'GET',
     path: '/',
-    options: {
-      auth: {
-        strategy: 'auth0',
-        mode: 'try'
-      }
-    },
     handler
   });
 

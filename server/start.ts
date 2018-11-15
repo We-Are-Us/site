@@ -1,10 +1,10 @@
 /// <reference path="./types/index.d.ts" />
 import 'reflect-metadata';
-import { Server, ResponseToolkit } from 'hapi';
+import { Server } from 'hapi';
 import * as Vision from 'vision';
 import * as Inert from 'inert';
 import * as hapiAuthAuth0 from 'hapi-auth-auth0';
-import { Credentials, success, transformer, error } from './auth';
+import { success, transformer, error } from './auth';
 import config from './config';
 import logger from './logging/logger';
 import configureRoutes from './routes/configure-routes';

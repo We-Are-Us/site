@@ -71,7 +71,7 @@ const config = convict({
       default: '',
       env: 'GTM_CONTAINER_ID'
     }
-  },
+  } /*,
   mailchimp: {
     apiKey: {
       doc: 'Mailchimp API key',
@@ -85,7 +85,7 @@ const config = convict({
       default: null,
       env: 'MAILCHIMP_LIST_ID'
     }
-  }
+  }*/
 });
 
 config.validate({ allowed: 'strict' });

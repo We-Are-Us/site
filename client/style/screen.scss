@@ -1,6 +1,6 @@
 // TODO: declare variables
 $primary: #563d7c;
-$secondary: #ececec;
+$secondary: lighten(#ececec, 2%);
 
 $spacer: 2rem;
 
@@ -10,6 +10,19 @@ $label-font-weight: 600;
 
 label {
   font-weight: $label-font-weight;
+}
+
+.form-control {
+  &-secondary {
+    border-color: $secondary;
+    border-radius: 0;
+    background-color: $secondary;
+    color: $primary;
+
+    &:focus {
+      background-color: $secondary;
+    }
+  }
 }
 
 #mc_embed_signup {

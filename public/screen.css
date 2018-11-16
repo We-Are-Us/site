@@ -8614,6 +8614,12 @@ label {
   font-weight: 600;
 }
 
+#mc_embed_signup {
+  background-color: #ececec;
+}
+#mc_embed_signup label {
+  color: #563d7c;
+}
 #mc_embed_signup input.button {
   background-color: #563d7c;
 }

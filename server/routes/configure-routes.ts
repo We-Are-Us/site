@@ -156,6 +156,20 @@ const configureRoutes = (server: Server) => {
 
   server.route({
     method: 'GET',
+    path: '/view/{name}',
+    handler: (request, h) => {
+      if (process.env.NODE_ENV !== 'development') {
+        throw new Error('/view/* is only supported in development mode');
+      }
+
+      const name = request.params.name;
+
+      return h.view(name, getViewContext(request));
+    }
+  });
+
+  server.route({
+    method: 'GET',
     path: '/secure',
     options: {
       auth: {

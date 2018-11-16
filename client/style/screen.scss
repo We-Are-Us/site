@@ -2,4 +2,24 @@
 $primary: #563d7c;
 $secondary: #ececec;
 
+$spacer: 2rem;
+
+$label-font-weight: 600;
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+label {
+  font-weight: $label-font-weight;
+}
+
+#mc_embed_signup {
+  background-color: $secondary;
+
+  label {
+    color: $primary;
+  }
+
+  input.button {
+    background-color: $primary;
+  }
+}

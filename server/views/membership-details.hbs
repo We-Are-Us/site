@@ -1,40 +1,10 @@
-<div class="container pt-5 pb-3">
+<div class="container pt-5">
   <h2 class="h2 text-primary text-center">Membership Details</h2>
-  <form>
-    <div class="row">
-      <div class="col-12 col-sm-6 pb-2">
-        <label for="firstName">First name</label>
-        <input id="firstName" type="text" class="form-control form-control-secondary" placeholder="First name">
-      </div>
-      <div class="col-12 col-sm-6 pb-2">
-        <label for="lastName">Last name</label>
-        <input id="lastName" type="text" class="form-control form-control-secondary" placeholder="Last name">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-sm-6 pb-2">
-        <label for="emailAddress">Email address</label>
-        <input id="emailAddress" type="email" class="form-control form-control-secondary" placeholder="you@example.com">
-      </div>
-      <div class="col-12 col-sm-6 pb-2">
-        <label for="phoneNumber">Phone number</label>
-        <input id="phoneNumber" type="tel" class="form-control form-control-secondary">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="accountUsername">Account username</label>
-      <input id="accountUsername" type="text" class="form-control form-control-secondary">
-    </div>
-    <div class="form-group">
-      <label for="accountPassword">Create account password</label>
-      <input id="accountPassword" type="password" class="form-control form-control-secondary">
-    </div>
-    <div class="form-group">
-      <label for="confirmPassword">Confirm password</label>
-      <input id="confirmPassword" type="password" class="form-control form-control-secondary">
-    </div>
-  </form>
+  <div id="react-root"></div>
 </div>
+{{#if jsBundle}}
+  <script src="{{jsBundle}}"></script>
+{{/if}}
 <div class="container pb-3">
   <h2 class="h2 text-primary text-center">Your Order</h2>
   <div class="row border-top border-bottom py-1">

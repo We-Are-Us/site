@@ -1,6 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import MembershipDetailsForm from './components/MembershipDetailsForm';
+import MembershipDetailsForm, {
+  MembershipDetailsFormProps
+} from './components/MembershipDetailsForm';
+import ErrorBoundary from './components/ErrorBoundary';
 // import routeHistory from './routeHistory';
 // import App from './components/App';
 
@@ -14,4 +17,16 @@ ReactDOM.render(
   rootEl
 );
 */
-ReactDOM.render(<MembershipDetailsForm />, rootEl);
+const props: MembershipDetailsFormProps = {
+  membership: 'standard',
+  total: 0,
+  recurringTotal: 0,
+  renewal: new Date(2019, 0, 1)
+};
+
+ReactDOM.render(
+  <ErrorBoundary>
+    <MembershipDetailsForm {...props} />
+  </ErrorBoundary>,
+  rootEl
+);

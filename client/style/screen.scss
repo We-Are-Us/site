@@ -25,6 +25,30 @@ label {
   }
 }
 
+.StripeElement {
+  background-color: white;
+  // height: 40px;
+  padding: $input-padding-y $input-padding-x;
+  border-radius: $input-border-radius;
+  border: $input-border-width solid $input-border-color;
+  box-shadow: $input-box-shadow;
+  // transition: box-shadow 150ms ease;
+  color: $input-color;
+  width: 100%;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
 #mc_embed_signup {
   background-color: $secondary;
 

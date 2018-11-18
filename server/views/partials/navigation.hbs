@@ -20,12 +20,9 @@
         <ul class="navbar-nav ml-auto pt-1">
           {{#each headerLinks}}
             <li class="nav-item px-2">
-              <a class="nav-link text-{{../navigationTextColor}}" href="{{this.href}}">{{this.text}}</a>
+              <a class="{{this.classname}}" href="{{this.href}}">{{this.text}}</a>
             </li>
           {{/each}}
-          <li class="nav-item pl-2">
-            <a class="btn btn-outline-{{navigationOutlineColor}}" href="/register">Register</a>
-          </li>
         </ul>
       </div>
     </nav>

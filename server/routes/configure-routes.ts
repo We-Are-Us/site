@@ -10,7 +10,9 @@ import getText from '../content/get-text';
 import getTitledText from '../content/get-titled-text';
 import getHeaderLinks from '../features/header-links';
 import { footerLinks } from '../features/footer-links';
-import isLoggedIn from './isLoggedIn';
+import MembershipDetailsDto from '../../shared/dto/MembershipDetailsDto';
+import registerMember from '../api/registerMember';
+import Membership from '../../shared/domain/Membership';
 
 const EXPIRES_IN_SECONDS = 7200;
 
@@ -22,7 +24,10 @@ const getViewContext = (request: Request) => ({
       : 'http://localhost:1234/app.js',
   navigationTextColor: request.url.pathname === '/' ? 'white' : 'primary',
   navigationOutlineColor: request.url.pathname === '/' ? 'light' : 'primary',
-  headerLinks: getHeaderLinks(isLoggedIn(request)),
+  headerLinks: getHeaderLinks(
+    request,
+    request.url.pathname === '/' ? 'white' : 'primary'
+  ),
   footerLinks
 });
 
@@ -165,6 +170,31 @@ const configureRoutes = (server: Server) => {
       const name = request.params.name;
 
       return h.view(name, getViewContext(request));
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/registration',
+    handler: (request, h) => {
+      const membership = request.params.membership as Membership;
+
+      return h.view(
+        'registration',
+        Object.assign({ membership }, getViewContext(request))
+      );
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/registration',
+    handler: async (request, h) => {
+      const dto = request.payload as MembershipDetailsDto;
+
+      await registerMember(dto);
+
+      return 'ok';
     }
   });
 

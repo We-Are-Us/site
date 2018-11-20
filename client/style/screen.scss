@@ -5,6 +5,7 @@ $secondary: lighten(#ececec, 2%);
 $spacer: 2rem;
 
 $label-font-weight: 600;
+$form-feedback-valid-color: $primary;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
@@ -28,6 +29,8 @@ label {
 .StripeElement {
   background-color: white;
   // height: 40px;
+  margin-left: $spacer * 0.25;
+  margin-right: $spacer * 0.25;
   padding: $input-padding-y $input-padding-x;
   border-radius: $input-border-radius;
   border: $input-border-width solid $input-border-color;
@@ -38,15 +41,19 @@ label {
 }
 
 .StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
+  box-shadow: $input-focus-box-shadow;
 }
 
 .StripeElement--invalid {
-  border-color: #fa755a;
+  border-color: $form-feedback-invalid-color;
 }
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+#card-errors {
+  color: $form-feedback-invalid-color;
 }
 
 #mc_embed_signup {

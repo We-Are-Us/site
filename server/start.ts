@@ -4,6 +4,7 @@ import { Server } from 'hapi';
 import * as Vision from 'vision';
 import * as Inert from 'inert';
 import * as hapiAuthAuth0 from 'hapi-auth-auth0';
+import * as yar from 'yar';
 import { success, transformer, error } from './auth';
 import config from './config';
 import logger from './logging/logger';
@@ -15,6 +16,19 @@ const server = new Server({
 
 const start = async () => {
   try {
+    // yar needs to be registered before hapiAuthAuth0
+    await server.register({
+      plugin: yar,
+      options: {
+        storeBlank: false,
+        cookieOptions: {
+          // TODO:
+          password: 'b10ccbe4-cfd8-4ff0-9bf6-7e6fc602b7ea',
+          isSecure: process.env.NODE_ENV !== 'development'
+        }
+      }
+    });
+
     await server.register({
       plugin: hapiAuthAuth0,
       options: {

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ErrorMessage, Field, Formik, FormikActions } from 'formik';
 import cn from 'classnames';
+import * as HttpStatus from 'http-status-codes';
 import formatDate from '../format/formatDate';
 import formatMoney from '../format/formatMoney';
 import Membership from '../../shared/domain/Membership';
@@ -20,6 +21,7 @@ const getInitialValues = (
 ): MembershipDetailsDto => ({
   firstName: '',
   lastName: '',
+  practiceName: '',
   emailAddress: '',
   phoneNumber: '',
   username: '',
@@ -41,8 +43,9 @@ const onSubmit = async (
       body: JSON.stringify(values)
     });
 
-    // tslint:disable-next-line:no-console
-    console.log('response.status', response.status);
+    if (response.status === HttpStatus.OK) {
+      window.location.href = '/charge';
+    }
   } finally {
     setSubmitting(false);
   }
@@ -100,6 +103,24 @@ const MembershipDetailsForm: React.FunctionComponent<
                   />
                   <ErrorMessage
                     name="lastName"
+                    className="invalid-feedback"
+                    component="div"
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12 pb-2">
+                  <label htmlFor="practiceName">Practice name</label>{' '}
+                  <small className="text-muted">(Optional)</small>
+                  <Field
+                    id="practiceName"
+                    name="practiceName"
+                    type="text"
+                    className="form-control form-control-secondary"
+                    placeholder="Practice Name"
+                  />
+                  <ErrorMessage
+                    name="practiceName"
                     className="invalid-feedback"
                     component="div"
                   />

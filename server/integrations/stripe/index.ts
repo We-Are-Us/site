@@ -10,6 +10,7 @@ export const createCustomer = async (
   client: Stripe,
   customer: customers.ICustomerCreationOptions
 ) => {
+  // TODO: send phone number to Stripe
   const response = await client.customers.create(customer);
 
   logger.debug('Stripe create customer response: %o', response);

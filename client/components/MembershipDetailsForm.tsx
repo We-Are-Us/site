@@ -204,27 +204,6 @@ const MembershipDetailsForm: React.FunctionComponent<
                   component="div"
                 />
               </div>
-              <div className="container pb-3">
-                <h2 className="h2 text-primary text-center">Your Order</h2>
-                <div className="row border-top border-bottom py-1">
-                  <div className="col-4 font-weight-bold">Membership</div>
-                  <div className="col-8">
-                    {membership}
-                    <Field type="hidden" />
-                  </div>
-                </div>
-                <div className="row border-bottom py-1">
-                  <div className="col-4 font-weight-bold">Total</div>
-                  <div className="col-8">{formatMoney(total)} / year</div>
-                </div>
-                <div className="row border-bottom py-1">
-                  <div className="col-4 font-weight-bold">Recurring Totals</div>
-                  <div className="col-8">
-                    {formatMoney(recurringTotal)} / year (renewal:{' '}
-                    {formatDate(renewal)})
-                  </div>
-                </div>
-              </div>
               <div className="container pt-1 pb-3">
                 <div className="row">
                   <div className="col-12">

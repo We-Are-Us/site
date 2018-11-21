@@ -1,8 +1,10 @@
 import logger from '../logging/logger';
-import { ResponseToolkit } from 'hapi';
+import { Request, ResponseToolkit } from 'hapi';
 import { Account } from '../entity/Account';
 import * as ono from 'ono';
 import { createDatabaseConnection } from '../database';
+
+export const IS_LOGGED_IN_COOKIE_NAME = 'is-logged-in';
 
 export interface Credentials {
   sub: string;
@@ -17,6 +19,11 @@ export const success = async (
   h: ResponseToolkit
 ) => {
   logger.debug('success: %O', credentials);
+
+  // FIXME: doesn't work
+  request.yar.set('IS_LOGGED_IN_COOKIE_NAME', {
+    isLoggedIn: true
+  });
 
   return h.continue;
 };

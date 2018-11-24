@@ -1,5 +1,6 @@
 import { Server, Request, Lifecycle } from 'hapi';
 import { Marked } from 'marked-ts';
+import { omit } from 'lodash';
 import logger from '../logging/logger';
 import config from '../config';
 import contentfulClient from '../content/client';
@@ -11,6 +12,8 @@ import getTitledText from '../content/get-titled-text';
 import getHeaderLinks from '../features/header-links';
 import { footerLinks } from '../features/footer-links';
 import isLoggedIn from './isLoggedIn';
+import variation, { getUser } from '../variation/index';
+import { HOMEPAGE_VARIATION } from '../variation/variations';
 
 const EXPIRES_IN_SECONDS = 7200;
 
@@ -50,18 +53,29 @@ const handler: Lifecycle.Method = async (request, h) => {
   // const i = Math.floor(Math.random() * categories.length);
   // const modality = categories[i];
 
-  return h
-    .view(
-      'index',
-      Object.assign(
-        {
-          lead: Marked.parse(lead)
-        },
-        getViewContext(request)
+  // session id
+
+  const user = getUser(request);
+  logger.debug('user: %o', user);
+
+  const showFeature = await variation(HOMEPAGE_VARIATION, user, false);
+
+  if (showFeature) {
+    return h
+      .view(
+        'index',
+        Object.assign({ lead: Marked.parse(lead) }, getViewContext(request))
       )
-    )
-    .header('Accept-CH', 'DPR, Viewport-Width, Width');
-  // .header('link', `<${modality.image}>; rel=prefetch`);
+      .header('Accept-CH', 'DPR, Viewport-Width, Width');
+    // .header('link', `<${modality.image}>; rel=prefetch`);
+  } else {
+    return h
+      .view(
+        'prelaunch',
+        omit(getViewContext(request), ['headerLinks', 'footerLinks'])
+      )
+      .header('Accept-CH', 'DPR, Viewport-Width, Width');
+  }
 };
 
 const configureRoutes = (server: Server) => {
@@ -88,6 +102,45 @@ const configureRoutes = (server: Server) => {
     method: 'GET',
     path: '/',
     handler
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/homepage',
+    handler: async (request, h) => {
+      logger.debug('request.auth: %o', request.auth);
+
+      // TODO: this should go in a separate module so it can be cached, reused, etc.
+      const client = contentfulClient;
+
+      const promises = await Promise.all([
+        // getCategories(client),
+        getText(client, 'lead')
+        // getTitledText(client, 'benefit-1'),
+        // getTitledText(client, 'benefit-2')
+      ]);
+
+      // const entries = promises[0];
+      const lead = promises[0];
+
+      /* const categories = entries.map((entry: Entry<any>) => ({
+        name: entry.fields.name,
+        image: entry.fields.image.fields.file.url
+      })); */
+
+      // const i = Math.floor(Math.random() * categories.length);
+      // const modality = categories[i];
+
+      // session id
+
+      return h
+        .view(
+          'index',
+          Object.assign({ lead: Marked.parse(lead) }, getViewContext(request))
+        )
+        .header('Accept-CH', 'DPR, Viewport-Width, Width');
+      // .header('link', `<${modality.image}>; rel=prefetch`);
+    }
   });
 
   server.route({

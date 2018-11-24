@@ -1,12 +1,13 @@
 {{> newsletter}}
-
-<footer class="container-fluid bg-white py-4">
-  <div class="container">
-    <img src="/public/assets/Logo Footer.svg" itemProp="logo" height="32" />
-    {{#each footerLinks}}
-      <span class="px-2 px-md-3">
-        <a href={{this.href}} class="text-muted">{{this.text}}</a>
-      </span>
-    {{/each}}
-  </div>
-</footer>
+{{#if footerLinks}}
+  <footer class="container-fluid bg-white py-4">
+    <div class="container">
+      <img src="/public/assets/Logo Footer.svg" itemProp="logo" height="32" />
+      {{#each footerLinks}}
+        <span class="px-2 px-md-3">
+          <a href={{this.href}} class="text-muted">{{this.text}}</a>
+        </span>
+      {{/each}}
+    </div>
+  </footer>
+{{/if}}

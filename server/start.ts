@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import { Server } from 'hapi';
 import * as Vision from 'vision';
 import * as Inert from 'inert';
+import * as yar from 'yar';
 import * as hapiAuthAuth0 from 'hapi-auth-auth0';
 import { success, transformer, error } from './auth';
 import config from './config';
@@ -15,6 +16,17 @@ const server = new Server({
 
 const start = async () => {
   try {
+    await server.register({
+      plugin: yar,
+      options: {
+        storeBlank: false,
+        cookieOptions: {
+          password: '0609b0d7-c4f8-40c2-8caa-adcaef05bb3b',
+          isSecure: process.env.NODE_ENV !== 'development'
+        }
+      }
+    });
+
     await server.register({
       plugin: hapiAuthAuth0,
       options: {

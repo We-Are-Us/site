@@ -20,25 +20,39 @@ const config = convict({
     default: 'info',
     env: 'LOG_LEVEL'
   },
-  auth: {
+  auth0: {
+    // bitter-snowflake-7928
+    managementApi: {
+      clientId: {
+        doc: 'Auth0 management API client ID',
+        format: String,
+        default: '',
+        env: 'AUTH0_MANAGEMENT_API_CLIENT_ID'
+      },
+      clientSecret: {
+        doc: 'Auth0 management API client secret',
+        format: String,
+        default: '',
+        env: 'AUTH0_MANAGEMENT_API_CLIENT_SECRET'
+      }
+    },
     audience: {
-      // doc: '',
-      format: 'url',
-      default: null,
-      env: 'AUTH_AUDIENCE',
-      sensitive: true
+      doc: 'Auth0 audience',
+      format: String,
+      default: '',
+      env: 'AUTH0_AUDIENCE'
     },
-    issuer: {
-      // doc: '',
-      format: 'url',
-      default: null,
-      env: 'AUTH_ISSUER'
+    clientId: {
+      doc: 'Auth0 client ID',
+      format: String,
+      default: '',
+      env: 'AUTH0_CLIENT_ID'
     },
-    jwksUri: {
-      // doc: '',
-      format: 'url',
-      default: null,
-      env: 'AUTH_JWKS_URI'
+    clientSecret: {
+      doc: 'Auth0 client secret',
+      format: String,
+      default: '',
+      env: 'AUTH0_CLIENT_SECRET'
     }
   },
   database: {

@@ -1,15 +1,59 @@
 // TODO: declare variables
 $primary: #563d7c;
-$secondary: #ececec;
+$secondary: lighten(#ececec, 2%);
 
 $spacer: 2rem;
 
 $label-font-weight: 600;
+$form-feedback-valid-color: $primary;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 label {
   font-weight: $label-font-weight;
+}
+
+.form-control {
+  &-secondary {
+    border-color: $secondary;
+    border-radius: 0;
+    background-color: $secondary;
+    color: $primary;
+
+    &:focus {
+      background-color: $secondary;
+    }
+  }
+}
+
+.StripeElement {
+  background-color: white;
+  // height: 40px;
+  margin-left: $spacer * 0.25;
+  margin-right: $spacer * 0.25;
+  padding: $input-padding-y $input-padding-x;
+  border-radius: $input-border-radius;
+  border: $input-border-width solid $input-border-color;
+  box-shadow: $input-box-shadow;
+  // transition: box-shadow 150ms ease;
+  color: $input-color;
+  width: 100%;
+}
+
+.StripeElement--focus {
+  box-shadow: $input-focus-box-shadow;
+}
+
+.StripeElement--invalid {
+  border-color: $form-feedback-invalid-color;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+#card-errors {
+  color: $form-feedback-invalid-color;
 }
 
 #mc_embed_signup {

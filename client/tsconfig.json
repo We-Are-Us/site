@@ -7,7 +7,7 @@
     "noEmit": true,
     "noImplicitAny": false,
     "jsx": "react",
-    "target": "es2017",
+    "target": "es2015",
     "lib": ["dom", "es6", "scripthost"]
   },
   "include": ["../client/**/*.ts", "../client/**/*.tsx"],

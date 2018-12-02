@@ -16,12 +16,14 @@ const server = new Server({
 
 const start = async () => {
   try {
+    // yar needs to be registered before hapiAuthAuth0
     await server.register({
       plugin: yar,
       options: {
         storeBlank: false,
         cookieOptions: {
-          password: '0609b0d7-c4f8-40c2-8caa-adcaef05bb3b',
+          // TODO:
+          password: 'b10ccbe4-cfd8-4ff0-9bf6-7e6fc602b7ea',
           isSecure: process.env.NODE_ENV !== 'development'
         }
       }

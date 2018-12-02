@@ -1,0 +1,38 @@
+<form action="/charge" method="post" id="payment-form">
+  <div class="container pt-5">
+    <h2 class="h2 text-primary text-center">Your Order</h2>
+    <div class="row border-top border-bottom py-1">
+      <div class="col-4 font-weight-bold">Membership</div>
+      <div class="col-8">
+        {{membership}}
+      </div>
+    </div>
+    <div class="row border-bottom py-1">
+      <div class="col-4 font-weight-bold">Total</div>
+      <div class="col-8">{{charge}} / month</div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-12">
+          <div class="form-row">
+            <label for="card-element">
+              Credit or debit card
+            </label>
+            <div id="card-element">
+              <!-- A Stripe Element will be inserted here. -->
+            </div>
+
+            <!-- Used to display Element errors. -->
+            <div id="card-errors" role="alert"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row py-2">
+        <div class="col-12">
+          <button class="btn btn-primary">Submit Payment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script src="/public/payment.js"></script>

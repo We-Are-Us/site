@@ -7,6 +7,7 @@ import practitionerRoutes from './practitioners';
 import registerRoutes from './register';
 import registrationRoutes from './registration';
 import getViewContext from './getViewContext';
+import homepageHandler from './homepageHandler';
 
 const EXPIRES_IN_SECONDS = 7200;
 
@@ -34,6 +35,12 @@ const configureRoutes = (server: Server) => {
     method: 'GET',
     path: '/',
     handler
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/homepage',
+    handler: homepageHandler
   });
 
   server.route({
